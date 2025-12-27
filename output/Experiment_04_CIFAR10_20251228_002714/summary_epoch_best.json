@@ -1,0 +1,41 @@
+[
+    {
+        "filters": 3,
+        "trainable": {
+            "best_epoch": 1,
+            "val_acc": 0.1,
+            "val_loss": 8.870312101766467
+        },
+        "frozen": {
+            "best_epoch": 1,
+            "val_acc": 0.1,
+            "val_loss": 9.6365488499403
+        }
+    },
+    {
+        "filters": 6,
+        "trainable": {
+            "best_epoch": 1,
+            "val_acc": 0.2,
+            "val_loss": 10.214468202169519
+        },
+        "frozen": {
+            "best_epoch": 3,
+            "val_acc": 0.15,
+            "val_loss": 14.256691936776042
+        }
+    },
+    {
+        "filters": 9,
+        "trainable": {
+            "best_epoch": 1,
+            "val_acc": 0.2,
+            "val_loss": 19.88218337937724
+        },
+        "frozen": {
+            "best_epoch": 2,
+            "val_acc": 0.1,
+            "val_loss": 16.15728862799879
+        }
+    }
+]

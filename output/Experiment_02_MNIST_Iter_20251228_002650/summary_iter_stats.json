@@ -1,0 +1,35 @@
+[
+    {
+        "filters": 1,
+        "trainable": {
+            "val_acc": "23.33 \u00b1 4.71%",
+            "val_loss": "2.5019 \u00b1 0.1474"
+        },
+        "frozen": {
+            "val_acc": "30.00 \u00b1 4.08%",
+            "val_loss": "2.1791 \u00b1 0.1012"
+        }
+    },
+    {
+        "filters": 2,
+        "trainable": {
+            "val_acc": "30.00 \u00b1 7.07%",
+            "val_loss": "2.3721 \u00b1 0.0741"
+        },
+        "frozen": {
+            "val_acc": "28.33 \u00b1 2.36%",
+            "val_loss": "2.3799 \u00b1 0.1061"
+        }
+    },
+    {
+        "filters": 3,
+        "trainable": {
+            "val_acc": "28.33 \u00b1 6.24%",
+            "val_loss": "2.4848 \u00b1 0.1676"
+        },
+        "frozen": {
+            "val_acc": "21.67 \u00b1 4.71%",
+            "val_loss": "2.3983 \u00b1 0.1123"
+        }
+    }
+]

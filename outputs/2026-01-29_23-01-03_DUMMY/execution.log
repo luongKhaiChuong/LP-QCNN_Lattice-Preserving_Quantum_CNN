@@ -1,0 +1,34 @@
+2026-01-29 23:01:03 | INFO | Logger initialized. Saving logs to: ./outputs\2026-01-29_23-01-03_DUMMY\execution.log
+2026-01-29 23:01:03 | INFO | 
+============================================================
+2026-01-29 23:01:03 | INFO | [START] Running in >>> DUMMY <<< mode
+2026-01-29 23:01:03 | INFO | [INFO] Saving all results to: ./outputs\2026-01-29_23-01-03_DUMMY
+2026-01-29 23:01:03 | INFO | ============================================================
+
+2026-01-29 23:01:03 | INFO | 
+========================================
+2026-01-29 23:01:03 | INFO | PHASE 1 (DUMMY): OPTIMAL FILTER SEARCH
+2026-01-29 23:01:03 | INFO | ========================================
+2026-01-29 23:01:03 | INFO | >>> RUN: P1_MNIST_F1 | {'dataset': 'MNIST', 'data_size': 1000, 'epochs': 2, 'time': 3.0, 'time_steps': 3, 'n_filters': 1}
+2026-01-29 23:01:09 | INFO | Ep 1 | T.Loss: 2.1021 V.Loss: 1.6175 | V.Acc: 0.6850
+2026-01-29 23:01:15 | INFO | Ep 2 | T.Loss: 1.3094 V.Loss: 0.8004 | V.Acc: 0.7900
+2026-01-29 23:01:15 | INFO | >>> RUN: P1_MNIST_F2 | {'dataset': 'MNIST', 'data_size': 1000, 'epochs': 2, 'time': 3.0, 'time_steps': 3, 'n_filters': 2}
+2026-01-29 23:01:27 | INFO | Ep 1 | T.Loss: 2.0877 V.Loss: 1.0483 | V.Acc: 0.7700
+2026-01-29 23:01:38 | INFO | Ep 2 | T.Loss: 0.8308 V.Loss: 0.5650 | V.Acc: 0.8250
+2026-01-29 23:01:38 | INFO | --> Best MNIST Filter: 2 (Acc: 0.8250)
+2026-01-29 23:01:39 | INFO | >>> RUN: P1_FashionMNIST_F1 | {'dataset': 'FashionMNIST', 'data_size': 1000, 'epochs': 2, 'time': 3.0, 'time_steps': 3, 'n_filters': 1}
+2026-01-29 23:01:45 | INFO | Ep 1 | T.Loss: 1.8959 V.Loss: 1.1195 | V.Acc: 0.6150
+2026-01-29 23:01:52 | INFO | Ep 2 | T.Loss: 0.9820 V.Loss: 0.8063 | V.Acc: 0.7000
+2026-01-29 23:01:52 | INFO | >>> RUN: P1_FashionMNIST_F2 | {'dataset': 'FashionMNIST', 'data_size': 1000, 'epochs': 2, 'time': 3.0, 'time_steps': 3, 'n_filters': 2}
+2026-01-29 23:02:04 | INFO | Ep 1 | T.Loss: 1.6382 V.Loss: 1.1280 | V.Acc: 0.5700
+2026-01-29 23:02:16 | INFO | Ep 2 | T.Loss: 0.9285 V.Loss: 0.8081 | V.Acc: 0.7000
+2026-01-29 23:02:16 | INFO | --> Best FashionMNIST Filter: 1 (Acc: 0.7000)
+2026-01-29 23:02:16 | INFO | 
+========================================
+2026-01-29 23:02:16 | INFO | PHASE 2 (DUMMY): DYNAMICS GRID SEARCH
+2026-01-29 23:02:16 | INFO | ========================================
+2026-01-29 23:02:16 | INFO | >>> Dataset MNIST: Locking n_filters=2
+2026-01-29 23:02:16 | INFO | >>> RUN: P2_MNIST_T1.0_S1_F2 | {'dataset': 'MNIST', 'data_size': 2000, 'epochs': 5, 'time': 1.0, 'time_steps': 1, 'n_filters': 2}
+2026-01-29 23:02:27 | INFO | Ep 1 | T.Loss: 4.1197 V.Loss: 1.9723 | V.Acc: 0.4150
+2026-01-29 23:02:38 | INFO | Ep 2 | T.Loss: 1.7151 V.Loss: 1.3257 | V.Acc: 0.7850
+2026-01-29 23:02:49 | INFO | Ep 3 | T.Loss: 1.1132 V.Loss: 0.8753 | V.Acc: 0.7925

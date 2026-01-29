@@ -17,7 +17,7 @@ def run_phase_1():
     phase1_results = []
     
     if config.MODE == 'DUMMY':
-        datasets_config = {'MNIST': range(1, 2), 'FashionMNIST': range(1, 2)}
+        datasets_config = {'MNIST': range(1, 3), 'FashionMNIST': range(1, 3)}
         data_size, epochs = 1000, 2
     else:
         datasets_config = {'MNIST': range(1, 4), 'FashionMNIST': range(1, 7)}
@@ -48,11 +48,11 @@ def run_phase_1():
 
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
         ax1.plot(filters_list, acc_list, marker='o', color='blue')
-        ax1.set_title(f"Acc vs Filters ({ds_name})"); ax1.set_xlabel("Filters (Int)"); ax1.grid(True)
+        ax1.set_title(f"Acc vs Filters ({ds_name})"); ax1.set_xlabel("Filters"); ax1.grid(True)
         ax1.xaxis.set_major_locator(MaxNLocator(integer=True))
         
         ax2.bar(filters_list, time_list, color='orange', alpha=0.7)
-        ax2.set_title(f"Time vs Filters ({ds_name})"); ax2.set_xlabel("Filters (Int)"); ax2.grid(True, axis='y')
+        ax2.set_title(f"Time vs Filters ({ds_name})"); ax2.set_xlabel("Filters"); ax2.grid(True, axis='y')
         ax2.xaxis.set_major_locator(MaxNLocator(integer=True))
         
         plt.tight_layout()

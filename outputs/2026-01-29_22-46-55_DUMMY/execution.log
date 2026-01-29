@@ -70,3 +70,92 @@
 2026-01-29 22:51:45 | INFO | Ep 1 | T.Loss: 1.8872 V.Loss: 1.2298 | V.Acc: 0.6475
 2026-01-29 22:51:57 | INFO | Ep 2 | T.Loss: 1.0347 V.Loss: 0.8162 | V.Acc: 0.6950
 2026-01-29 22:52:07 | INFO | Ep 3 | T.Loss: 0.8146 V.Loss: 0.7032 | V.Acc: 0.7350
+2026-01-29 22:52:18 | INFO | Ep 4 | T.Loss: 0.7064 V.Loss: 0.6438 | V.Acc: 0.7500
+2026-01-29 22:52:27 | INFO | Ep 5 | T.Loss: 0.6684 V.Loss: 0.6704 | V.Acc: 0.7750
+2026-01-29 22:52:27 | INFO | --> Best FashionMNIST P2 Config: {'dataset': 'FashionMNIST', 'data_size': 2000, 'epochs': 5, 'time': 2.0, 'time_steps': 1, 'n_filters': 1}
+2026-01-29 22:52:28 | INFO | 
+========================================
+2026-01-29 22:52:28 | INFO | PHASE 3 (DUMMY): DYNAMICS SENSITIVITY
+2026-01-29 22:52:28 | INFO | ========================================
+2026-01-29 22:52:28 | INFO | >>> Analysing MNIST with Filter=1
+2026-01-29 22:52:28 | INFO | >>> RUN: P3_MNIST_T1.0_S1 | {'dataset': 'MNIST', 'data_size': 2000, 'epochs': 3, 'time': 1.0, 'time_steps': 1, 'n_filters': 1}
+2026-01-29 22:52:33 | INFO | Ep 1 | T.Loss: 2.9307 V.Loss: 2.0963 | V.Acc: 0.3500
+2026-01-29 22:52:40 | INFO | Ep 2 | T.Loss: 1.9213 V.Loss: 1.5294 | V.Acc: 0.5625
+2026-01-29 22:52:46 | INFO | Ep 3 | T.Loss: 1.2271 V.Loss: 0.9137 | V.Acc: 0.7300
+2026-01-29 22:52:46 | INFO | >>> RUN: P3_MNIST_T1.0_S2 | {'dataset': 'MNIST', 'data_size': 2000, 'epochs': 3, 'time': 1.0, 'time_steps': 2, 'n_filters': 1}
+2026-01-29 22:52:55 | INFO | Ep 1 | T.Loss: 2.6058 V.Loss: 1.7086 | V.Acc: 0.5850
+2026-01-29 22:53:04 | INFO | Ep 2 | T.Loss: 1.3841 V.Loss: 0.9960 | V.Acc: 0.7475
+2026-01-29 22:53:13 | INFO | Ep 3 | T.Loss: 0.8109 V.Loss: 0.6177 | V.Acc: 0.8300
+2026-01-29 22:53:13 | INFO | >>> RUN: P3_MNIST_T1.0_S3 | {'dataset': 'MNIST', 'data_size': 2000, 'epochs': 3, 'time': 1.0, 'time_steps': 3, 'n_filters': 1}
+2026-01-29 22:53:26 | INFO | Ep 1 | T.Loss: 2.6084 V.Loss: 1.7793 | V.Acc: 0.5775
+2026-01-29 22:53:39 | INFO | Ep 2 | T.Loss: 1.4435 V.Loss: 0.9991 | V.Acc: 0.7375
+2026-01-29 22:53:52 | INFO | Ep 3 | T.Loss: 0.7931 V.Loss: 0.6172 | V.Acc: 0.8000
+2026-01-29 22:53:52 | INFO | >>> RUN: P3_MNIST_T2.0_S1 | {'dataset': 'MNIST', 'data_size': 2000, 'epochs': 3, 'time': 2.0, 'time_steps': 1, 'n_filters': 1}
+2026-01-29 22:53:59 | INFO | Ep 1 | T.Loss: 2.3569 V.Loss: 2.2112 | V.Acc: 0.1975
+2026-01-29 22:54:05 | INFO | Ep 2 | T.Loss: 1.6516 V.Loss: 0.8474 | V.Acc: 0.8075
+2026-01-29 22:54:11 | INFO | Ep 3 | T.Loss: 0.6871 V.Loss: 0.5382 | V.Acc: 0.8250
+2026-01-29 22:54:11 | INFO | >>> RUN: P3_MNIST_T2.0_S2 | {'dataset': 'MNIST', 'data_size': 2000, 'epochs': 3, 'time': 2.0, 'time_steps': 2, 'n_filters': 1}
+2026-01-29 22:54:20 | INFO | Ep 1 | T.Loss: 2.1039 V.Loss: 1.5520 | V.Acc: 0.6125
+2026-01-29 22:54:28 | INFO | Ep 2 | T.Loss: 1.3204 V.Loss: 1.0648 | V.Acc: 0.7425
+2026-01-29 22:54:37 | INFO | Ep 3 | T.Loss: 0.9344 V.Loss: 0.7615 | V.Acc: 0.8225
+2026-01-29 22:54:37 | INFO | >>> RUN: P3_MNIST_T2.0_S3 | {'dataset': 'MNIST', 'data_size': 2000, 'epochs': 3, 'time': 2.0, 'time_steps': 3, 'n_filters': 1}
+2026-01-29 22:54:48 | INFO | Ep 1 | T.Loss: 1.8945 V.Loss: 1.1586 | V.Acc: 0.7425
+2026-01-29 22:55:00 | INFO | Ep 2 | T.Loss: 0.9147 V.Loss: 0.6601 | V.Acc: 0.8150
+2026-01-29 22:55:12 | INFO | Ep 3 | T.Loss: 0.6038 V.Loss: 0.5148 | V.Acc: 0.8650
+2026-01-29 22:55:12 | INFO | >>> Analysing FashionMNIST with Filter=1
+2026-01-29 22:55:12 | INFO | >>> RUN: P3_FashionMNIST_T1.0_S1 | {'dataset': 'FashionMNIST', 'data_size': 2000, 'epochs': 3, 'time': 1.0, 'time_steps': 1, 'n_filters': 1}
+2026-01-29 22:55:20 | INFO | Ep 1 | T.Loss: 2.0828 V.Loss: 1.1378 | V.Acc: 0.5900
+2026-01-29 22:55:26 | INFO | Ep 2 | T.Loss: 1.0432 V.Loss: 0.8802 | V.Acc: 0.6600
+2026-01-29 22:55:31 | INFO | Ep 3 | T.Loss: 0.8346 V.Loss: 0.7353 | V.Acc: 0.7050
+2026-01-29 22:55:31 | INFO | >>> RUN: P3_FashionMNIST_T1.0_S2 | {'dataset': 'FashionMNIST', 'data_size': 2000, 'epochs': 3, 'time': 1.0, 'time_steps': 2, 'n_filters': 1}
+2026-01-29 22:55:40 | INFO | Ep 1 | T.Loss: 2.0610 V.Loss: 1.0960 | V.Acc: 0.6475
+2026-01-29 22:55:48 | INFO | Ep 2 | T.Loss: 0.9565 V.Loss: 0.8482 | V.Acc: 0.6775
+2026-01-29 22:55:57 | INFO | Ep 3 | T.Loss: 0.8055 V.Loss: 0.7145 | V.Acc: 0.7175
+2026-01-29 22:55:57 | INFO | >>> RUN: P3_FashionMNIST_T1.0_S3 | {'dataset': 'FashionMNIST', 'data_size': 2000, 'epochs': 3, 'time': 1.0, 'time_steps': 3, 'n_filters': 1}
+2026-01-29 22:56:08 | INFO | Ep 1 | T.Loss: 2.0946 V.Loss: 1.1356 | V.Acc: 0.6375
+2026-01-29 22:56:21 | INFO | Ep 2 | T.Loss: 0.9726 V.Loss: 0.8467 | V.Acc: 0.6725
+2026-01-29 22:56:34 | INFO | Ep 3 | T.Loss: 0.8021 V.Loss: 0.7066 | V.Acc: 0.7200
+2026-01-29 22:56:34 | INFO | >>> RUN: P3_FashionMNIST_T2.0_S1 | {'dataset': 'FashionMNIST', 'data_size': 2000, 'epochs': 3, 'time': 2.0, 'time_steps': 1, 'n_filters': 1}
+2026-01-29 22:56:40 | INFO | Ep 1 | T.Loss: 2.3279 V.Loss: 1.9312 | V.Acc: 0.4625
+2026-01-29 22:56:46 | INFO | Ep 2 | T.Loss: 1.1498 V.Loss: 0.7922 | V.Acc: 0.7100
+2026-01-29 22:56:52 | INFO | Ep 3 | T.Loss: 0.7407 V.Loss: 0.6291 | V.Acc: 0.7600
+2026-01-29 22:56:52 | INFO | >>> RUN: P3_FashionMNIST_T2.0_S2 | {'dataset': 'FashionMNIST', 'data_size': 2000, 'epochs': 3, 'time': 2.0, 'time_steps': 2, 'n_filters': 1}
+2026-01-29 22:57:01 | INFO | Ep 1 | T.Loss: 1.8872 V.Loss: 1.2298 | V.Acc: 0.6475
+2026-01-29 22:57:11 | INFO | Ep 2 | T.Loss: 1.0347 V.Loss: 0.8162 | V.Acc: 0.6950
+2026-01-29 22:57:19 | INFO | Ep 3 | T.Loss: 0.8146 V.Loss: 0.7032 | V.Acc: 0.7350
+2026-01-29 22:57:19 | INFO | >>> RUN: P3_FashionMNIST_T2.0_S3 | {'dataset': 'FashionMNIST', 'data_size': 2000, 'epochs': 3, 'time': 2.0, 'time_steps': 3, 'n_filters': 1}
+2026-01-29 22:57:31 | INFO | Ep 1 | T.Loss: 1.7487 V.Loss: 1.0107 | V.Acc: 0.6550
+2026-01-29 22:57:43 | INFO | Ep 2 | T.Loss: 0.8818 V.Loss: 0.7450 | V.Acc: 0.7125
+2026-01-29 22:57:55 | INFO | Ep 3 | T.Loss: 0.7262 V.Loss: 0.6409 | V.Acc: 0.7575
+2026-01-29 22:57:56 | INFO | 
+========================================
+2026-01-29 22:57:56 | INFO | PHASE 4 (DUMMY): DATA EFFICIENCY
+2026-01-29 22:57:56 | INFO | ========================================
+2026-01-29 22:57:56 | INFO | >>> RUN: P4_MNIST_Size_1000 | {'dataset': 'MNIST', 'epochs': 5, 'time': 1.0, 'time_steps': 1, 'n_filters': 1, 'data_size': 1000}
+2026-01-29 22:57:59 | INFO | Ep 1 | T.Loss: 3.5081 V.Loss: 2.1962 | V.Acc: 0.1450
+2026-01-29 22:58:02 | INFO | Ep 2 | T.Loss: 2.1109 V.Loss: 2.0322 | V.Acc: 0.3000
+2026-01-29 22:58:06 | INFO | Ep 3 | T.Loss: 1.9239 V.Loss: 1.7277 | V.Acc: 0.5450
+2026-01-29 22:58:09 | INFO | Ep 4 | T.Loss: 1.5381 V.Loss: 1.2862 | V.Acc: 0.6600
+2026-01-29 22:58:12 | INFO | Ep 5 | T.Loss: 1.1810 V.Loss: 1.1100 | V.Acc: 0.6700
+2026-01-29 22:58:12 | INFO | >>> RUN: P4_MNIST_Size_2000 | {'dataset': 'MNIST', 'epochs': 5, 'time': 1.0, 'time_steps': 1, 'n_filters': 1, 'data_size': 2000}
+2026-01-29 22:58:18 | INFO | Ep 1 | T.Loss: 2.9307 V.Loss: 2.0963 | V.Acc: 0.3500
+2026-01-29 22:58:24 | INFO | Ep 2 | T.Loss: 1.9213 V.Loss: 1.5294 | V.Acc: 0.5625
+2026-01-29 22:58:30 | INFO | Ep 3 | T.Loss: 1.2271 V.Loss: 0.9137 | V.Acc: 0.7300
+2026-01-29 22:58:36 | INFO | Ep 4 | T.Loss: 0.9142 V.Loss: 0.7432 | V.Acc: 0.7975
+2026-01-29 22:58:41 | INFO | Ep 5 | T.Loss: 0.7217 V.Loss: 0.5954 | V.Acc: 0.8375
+2026-01-29 22:58:42 | INFO | >>> RUN: P4_MNIST_Size_5000 | {'dataset': 'MNIST', 'epochs': 5, 'time': 1.0, 'time_steps': 1, 'n_filters': 1, 'data_size': 5000}
+2026-01-29 22:58:58 | INFO | Ep 1 | T.Loss: 2.2040 V.Loss: 1.0928 | V.Acc: 0.6640
+2026-01-29 22:59:13 | INFO | Ep 2 | T.Loss: 0.8403 V.Loss: 0.5802 | V.Acc: 0.8220
+2026-01-29 22:59:27 | INFO | Ep 3 | T.Loss: 0.5557 V.Loss: 0.4806 | V.Acc: 0.8600
+2026-01-29 22:59:42 | INFO | Ep 4 | T.Loss: 0.4712 V.Loss: 0.4005 | V.Acc: 0.8880
+2026-01-29 22:59:59 | INFO | Ep 5 | T.Loss: 0.4240 V.Loss: 0.3815 | V.Acc: 0.8950
+2026-01-29 22:59:59 | INFO | >>> RUN: P4_FashionMNIST_Size_1000 | {'dataset': 'FashionMNIST', 'epochs': 5, 'time': 1.0, 'time_steps': 1, 'n_filters': 1, 'data_size': 1000}
+2026-01-29 23:00:03 | INFO | Ep 1 | T.Loss: 2.9399 V.Loss: 1.9292 | V.Acc: 0.3050
+2026-01-29 23:00:06 | INFO | Ep 2 | T.Loss: 1.6865 V.Loss: 1.3297 | V.Acc: 0.6250
+2026-01-29 23:00:09 | INFO | Ep 3 | T.Loss: 1.1879 V.Loss: 1.1480 | V.Acc: 0.5500
+2026-01-29 23:00:12 | INFO | Ep 4 | T.Loss: 0.9654 V.Loss: 0.8362 | V.Acc: 0.7250
+2026-01-29 23:00:15 | INFO | Ep 5 | T.Loss: 0.8880 V.Loss: 0.7836 | V.Acc: 0.6950
+2026-01-29 23:00:15 | INFO | >>> RUN: P4_FashionMNIST_Size_2000 | {'dataset': 'FashionMNIST', 'epochs': 5, 'time': 1.0, 'time_steps': 1, 'n_filters': 1, 'data_size': 2000}
+2026-01-29 23:00:22 | INFO | Ep 1 | T.Loss: 2.0828 V.Loss: 1.1378 | V.Acc: 0.5900
+2026-01-29 23:00:28 | INFO | Ep 2 | T.Loss: 1.0432 V.Loss: 0.8802 | V.Acc: 0.6600
+2026-01-29 23:00:34 | INFO | Ep 3 | T.Loss: 0.8346 V.Loss: 0.7353 | V.Acc: 0.7050

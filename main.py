@@ -6,7 +6,7 @@ from phases import run_phase_1, run_phase_2, run_phase_3, run_phase_4, run_phase
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--mode', type=str, default='FULL', choices=['DUMMY', 'FULL'])
+    parser.add_argument('--mode', type=str, default='DUMMY', choices=['DUMMY', 'FULL'])
     args = parser.parse_args()
     config.MODE = args.mode
     
@@ -20,10 +20,10 @@ if __name__ == "__main__":
     
     aux_download_data()
     
-    p1_best = run_phase_1()
-    p2_best = run_phase_2(p1_best)
-    run_phase_3(p1_best)
-    run_phase_4(p1_best)
+    p1_best_filters = run_phase_1()
+    p2_best_configs = run_phase_2(p1_best_filters)
+    run_phase_3(p2_best_configs)
+    run_phase_4(p2_best_configs)
     run_phase_5() 
     
     save_to_json(config.GLOBAL_RESULTS)

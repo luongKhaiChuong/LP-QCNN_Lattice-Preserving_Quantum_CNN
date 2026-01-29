@@ -6,6 +6,7 @@ import matplotlib.cm as cm
 from matplotlib.ticker import MaxNLocator
 import config
 import os
+import numpy as np
 from tqdm import tqdm
 from trainer import train_experiment
 
@@ -72,9 +73,9 @@ def run_phase_2(p1_best_configs):
     best_phase2 = {}
     
     if config.MODE == 'DUMMY':
-        times = [1.0, 2.0]
+        times = [1.0]
         grids = {'MNIST': {'time_steps': [1, 2]}, 'FashionMNIST': {'time_steps': [1, 2]}}
-        data_size, epochs = 2000, 5
+        data_size, epochs = 1000, 3
     else:
         times = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
         grids = {'MNIST': {'time_steps': [1, 2, 4]}, 'FashionMNIST': {'time_steps': [1, 2, 4, 8]}}
@@ -101,11 +102,11 @@ def run_phase_2(p1_best_configs):
 
         if not records: continue
         unique_times = sorted(list(set(r['time'] for r in records)))
-        unique_steps = sorted(list(set(r['steps'] for r in records)))
-        color_map = plt.get_cmap('viridis', len(unique_times))
+        
+        color_map = plt.get_cmap('tab10') 
         linestyles = ['--', '-.', ':', (0, (3, 1, 1, 1)), (0, (5, 2))]
         markers = ['o', 's', '^', 'D', 'v', '<', '>', '*', 'P', 'X']
-        style_cycle = itertools.cycle(zip(linestyles, markers))
+        style_cycle = itertools.cycle(itertools.product(linestyles, markers))
         
         plt.figure(figsize=(10, 7))
         for t_idx, t in enumerate(unique_times):
@@ -114,13 +115,15 @@ def run_phase_2(p1_best_configs):
             subset.sort(key=lambda x: x['steps'])
             y_vals = [r['acc'] for r in subset]
             x_vals_str = [str(r['steps']) for r in subset]
-            c = color_map(t_idx)
+            c = color_map(t_idx % 10)
             ls, mk = next(style_cycle)
-            plt.plot(x_vals_str, y_vals, marker=mk, linestyle=ls, color=c, label=f"Time={t}", linewidth=2, markersize=8, alpha=0.9)
-                     
+            plt.plot(x_vals_str, y_vals, marker=mk, linestyle=ls, color=c, 
+                     label=f"Time={t}", linewidth=2, markersize=8, alpha=0.9)
+                      
         plt.title(f"Dynamics Analysis ({ds_name}) [Filter={optimal_filter}]")
-        plt.xlabel("Time Steps"); plt.ylabel("Validation Accuracy")
-        plt.legend(bbox_to_anchor=(1.05, 1), title="Duration")
+        plt.xlabel("Time Steps (Equally Spaced Categories)")
+        plt.ylabel("Validation Accuracy")
+        plt.legend(bbox_to_anchor=(1.05, 1), title="Duration (Time)")
         plt.grid(True, linestyle='--', alpha=0.5); plt.tight_layout()
         filename = f"P2_{ds_name}_Scatter_{config.MODE}.png"
         plt.savefig(os.path.join(config.RUN_DIR, filename))
@@ -129,53 +132,84 @@ def run_phase_2(p1_best_configs):
     config.GLOBAL_RESULTS['phase_2'] = phase2_results
     return best_phase2
 
-def run_phase_3(p1_best_configs):
+def run_phase_3(p2_best_configs):
     config.LOGGER.info("\n" + "="*40)
-    config.LOGGER.info(f"PHASE 3 ({config.MODE}): DYNAMICS SENSITIVITY")
+    config.LOGGER.info(f"PHASE 3 ({config.MODE}): DEEP ANALYSIS (20 EPOCHS)")
     config.LOGGER.info("="*40)
     
     phase3_results = []
+    
     if config.MODE == 'DUMMY':
-        times_list = [1.0, 2.0]; steps_list = [1, 2, 3]; data_size, epochs = 2000, 3
+        data_size = 1000
+        epochs = 5
     else:
-        times_list = [1.0, 2.0, 3.0, 4.0, 5.0]; steps_list = [1, 2, 4, 6, 8, 10]; data_size, epochs = 20000, 5
+        data_size = 'fullset'
+        epochs = 20
         
-    for ds_name, optimal_filter in p1_best_configs.items():
-        config.LOGGER.info(f">>> Analysing {ds_name} with Filter={optimal_filter}")
-        results_map = {t: {} for t in times_list}
+    for ds_name, best_cfg in p2_best_configs.items():
+        config.LOGGER.info(f">>> Deep Training {ds_name} with Config: {best_cfg}")
         
-        combinations = list(itertools.product(times_list, steps_list))
-        pbar = tqdm(combinations, desc=f"P3 {ds_name} Analysis")
+        run_cfg = best_cfg.copy()
+        run_cfg['data_size'] = data_size
+        run_cfg['epochs'] = epochs
         
-        for t, s in pbar:
-            cfg = {'dataset': ds_name, 'data_size': data_size, 'epochs': epochs, 'time': t, 'time_steps': s, 'n_filters': optimal_filter}
-            hist, final_acc, _ = train_experiment(cfg, f"P3_{ds_name}_T{t}_S{s}")
-            final_loss = hist['val_loss'][-1] if hist['val_loss'] else 0.0
-            results_map[t][s] = {'acc': final_acc, 'loss': final_loss}
-            phase3_results.append({'config': cfg, 'acc': final_acc, 'loss': final_loss})
-
-        # Plot P3
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
-        color_map = plt.get_cmap('viridis', len(times_list))
-        for idx, t in enumerate(times_list):
-            sorted_steps = sorted(results_map[t].keys())
-            x_str = [str(s) for s in sorted_steps]
-            accs = [results_map[t][s]['acc'] for s in sorted_steps]
-            losses = [results_map[t][s]['loss'] for s in sorted_steps]
-            c = color_map(idx)
-            ax1.plot(x_str, accs, marker='o', linestyle='-', color=c, label=f'Time={t}')
-            ax2.plot(x_str, losses, marker='s', linestyle='--', color=c, label=f'Time={t}')
-
-        ax1.set_title(f"Accuracy vs Steps ({ds_name})"); ax1.set_ylabel("Accuracy"); ax1.legend(title="Time"); ax1.grid(True)
-        ax2.set_title(f"Loss vs Steps ({ds_name})"); ax2.set_ylabel("Loss"); ax2.legend(title="Time"); ax2.grid(True)
+        save_path = f"model_P3_{ds_name}_{config.MODE}.pth"
+        
+        hist, final_acc, _ = train_experiment(run_cfg, f"P3_{ds_name}_FINAL", analyze_physics=True, save_model_path=save_path)
+        phase3_results.append(hist)
+        
+        epochs_x = range(1, len(hist['train_loss']) + 1)
+        
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
+        
+        ax1.plot(epochs_x, hist['train_loss'], label='Train Loss', linestyle='--', color='tab:blue', marker='.')
+        ax1.plot(epochs_x, hist['val_loss'], label='Val Loss', linestyle='-', color='tab:orange', marker='.')
+        ax1.set_title(f"Loss Evolution ({ds_name})")
+        ax1.set_xlabel("Epoch")
+        ax1.set_ylabel("Loss")
+        ax1.legend()
+        ax1.grid(True)
+        ax1.xaxis.set_major_locator(MaxNLocator(integer=True))
+        
+        ax2.plot(epochs_x, hist['train_acc'], label='Train Acc', linestyle='--', color='tab:green', marker='.')
+        ax2.plot(epochs_x, hist['val_acc'], label='Val Acc', linestyle='-', color='tab:red', marker='.')
+        ax2.set_title(f"Accuracy Evolution ({ds_name})")
+        ax2.set_xlabel("Epoch")
+        ax2.set_ylabel("Accuracy")
+        ax2.legend()
+        ax2.grid(True)
+        ax2.xaxis.set_major_locator(MaxNLocator(integer=True))
+        
         plt.tight_layout()
-        filename = f"P3_{ds_name}_Analysis_{config.MODE}.png"
-        plt.savefig(os.path.join(config.RUN_DIR, filename))
+        filename_perf = f"P3_{ds_name}_Perf_{config.MODE}.png"
+        plt.savefig(os.path.join(config.RUN_DIR, filename_perf))
+        plt.close()
+        
+        # BCH Error
+        plt.figure()
+        plt.plot(epochs_x, hist['bch'], label='BCH Error', color='crimson', marker='o')
+        plt.title(f"BCH Error Evolution ({ds_name})")
+        plt.xlabel("Epoch")
+        plt.ylabel("Error Value")
+        plt.grid(True)
+        plt.gca().xaxis.set_major_locator(MaxNLocator(integer=True))
+        plt.savefig(os.path.join(config.RUN_DIR, f"P3_{ds_name}_BCH_{config.MODE}.png"))
+        plt.close()
+        
+        # Fisher Rank
+        plt.figure()
+        plt.plot(epochs_x, hist['fisher_rank'], label='Fisher Rank', color='forestgreen', marker='s')
+        plt.title(f"Fisher Rank Evolution ({ds_name})")
+        plt.xlabel("Epoch")
+        plt.ylabel("Effective Rank")
+        plt.grid(True)
+        plt.gca().xaxis.set_major_locator(MaxNLocator(integer=True))
+        plt.savefig(os.path.join(config.RUN_DIR, f"P3_{ds_name}_Fisher_{config.MODE}.png"))
         plt.close()
 
     config.GLOBAL_RESULTS['phase_3'] = phase3_results
 
-def run_phase_4(p1_best_configs):
+def run_phase_4(best_configs):
     config.LOGGER.info("\n" + "="*40)
     config.LOGGER.info(f"PHASE 4 ({config.MODE}): DATA EFFICIENCY")
     config.LOGGER.info("="*40)
@@ -184,19 +218,38 @@ def run_phase_4(p1_best_configs):
     sizes = [1000, 2000, 5000] if config.MODE == 'DUMMY' else [1000, 2000, 5000, 10000, 20000, 50000, 'fullset']
     epochs = 5
     
-    for ds_name, optimal_filter in p1_best_configs.items():
-        base_cfg = {'dataset': ds_name, 'epochs': epochs, 'time': 1.0, 'time_steps': 1, 'n_filters': optimal_filter}
+    for ds_name, val in best_configs.items():
+        if isinstance(val, dict):
+            base_cfg = val.copy()
+            base_cfg['epochs'] = epochs
+            config.LOGGER.info(f">>> Using Optimized Config from P2 for {ds_name}: {base_cfg}")
+        else:
+            base_cfg = {'dataset': ds_name, 'epochs': epochs, 'time': 1.0, 'time_steps': 1, 'n_filters': val}
+            config.LOGGER.info(f">>> Using Basic Config (Only Filter from P1) for {ds_name}: {base_cfg}")
+
+
         size_metrics = {'dataset': ds_name, 'sizes': [], 'accuracies': [], 'losses': []}
         
         pbar = tqdm(sizes, desc=f"P4 {ds_name} Data Sizes")
         for sz in pbar:
-            run_cfg = base_cfg.copy(); run_cfg['data_size'] = sz
+            run_cfg = base_cfg.copy()
+            run_cfg['data_size'] = sz
+            
             hist, acc, _ = train_experiment(run_cfg, f"P4_{ds_name}_Size_{sz}")
-            size_metrics['sizes'].append(str(sz)); size_metrics['accuracies'].append(acc); size_metrics['losses'].append(hist['val_loss'][-1])
+            
+            size_metrics['sizes'].append(str(sz))
+            size_metrics['accuracies'].append(acc)
+            size_metrics['losses'].append(hist['val_loss'][-1])
             
         phase4_results.append(size_metrics)
-        plt.figure(figsize=(8, 5)); plt.plot(size_metrics['sizes'], size_metrics['accuracies'], marker='o', color='purple')
-        plt.title(f"Data Necessity ({ds_name})"); plt.xlabel("Data Size"); plt.grid(True)
+        
+        plt.figure(figsize=(8, 5))
+        plt.plot(size_metrics['sizes'], size_metrics['accuracies'], marker='o', color='purple')
+        plt.title(f"Data Necessity ({ds_name})")
+        plt.xlabel("Data Size")
+        plt.ylabel("Validation Accuracy")
+        plt.grid(True)
+        
         filename = f"P4_{ds_name}_Eff_{config.MODE}.png"
         plt.savefig(os.path.join(config.RUN_DIR, filename))
         plt.close()

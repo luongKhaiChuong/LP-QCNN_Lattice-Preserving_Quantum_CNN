@@ -13,7 +13,7 @@ def train_experiment(config_dict, run_name, analyze_physics=False, max_steps=Non
     seed_everything(config.SEED)
     binary = config_dict.get('binary_mode', False)
     tr_load, te_load = get_dataloaders(config_dict['dataset'], config_dict['data_size'], 
-                                     batch_size=64 if 'batch_size' not in config_dict else config_dict['batch_size'],
+                                     batch_size=128 if 'batch_size' not in config_dict else config_dict['batch_size'],
                                      binary_mode=binary)
     
     n_classes = 2 if binary else 10

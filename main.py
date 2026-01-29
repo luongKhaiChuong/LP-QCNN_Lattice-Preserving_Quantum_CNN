@@ -6,7 +6,7 @@ from phases import run_phase_1, run_phase_2, run_phase_3, run_phase_4, run_phase
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--mode', type=str, default='DUMMY', choices=['DUMMY', 'FULL'])
+    parser.add_argument('--mode', type=str, default='FULL', choices=['DUMMY', 'FULL'])
     args = parser.parse_args()
     config.MODE = args.mode
     

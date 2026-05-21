@@ -1,0 +1,17 @@
+2026-03-14 09:34:51 | INFO | Logger initialized. Saving logs to: ./outputs\2026-03-14_09-34-51_DUMMY\execution.log
+2026-03-14 09:34:51 | INFO | 
+============================================================
+2026-03-14 09:34:51 | INFO | [START] Running Experiment Suite in >>> DUMMY <<< mode
+2026-03-14 09:34:51 | INFO | [INFO] All outputs will be saved to: ./outputs\2026-03-14_09-34-51_DUMMY
+2026-03-14 09:34:51 | INFO | ============================================================
+
+2026-03-14 09:34:52 | INFO | 
+========================================
+2026-03-14 09:34:52 | INFO | PHASE 4 (DUMMY): NOISE RESILIENCE
+2026-03-14 09:34:52 | INFO | ========================================
+2026-03-14 09:34:52 | INFO | >>> Processing Noise Resilience for MNIST
+2026-03-14 09:34:52 | INFO | >>> START RUN: P4_MNIST_Noise_0.0 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 2, 'data_size': 5, 'noise_prob': 0.0}
+2026-03-14 09:35:29 | INFO | Epoch 1 | Train Loss: 2.3100 | Val Loss: 4.3653 | Val Acc: 0.1758
+2026-03-14 09:36:05 | INFO | Epoch 2 | Train Loss: 1.1526 | Val Loss: 6.6141 | Val Acc: 0.0958
+2026-03-14 09:36:05 | INFO | >>> START RUN: P4_MNIST_Noise_0.01 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 2, 'data_size': 5, 'noise_prob': 0.01}
+2026-03-14 10:31:34 | INFO | Epoch 1 | Train Loss: 2.3081 | Val Loss: 3.9521 | Val Acc: 0.1757

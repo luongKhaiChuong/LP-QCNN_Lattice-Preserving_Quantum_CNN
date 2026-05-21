@@ -82,12 +82,7 @@ def get_dataloaders(dataset_name, data_size, batch_size, binary_mode=False):
         # Randomly select indices for the training subset
         train_indices = torch.randperm(total_train_len, generator=rng)[:subset_train_size]
         train_subset = Subset(train_full_dataset, train_indices)
-        
-        # Create a correspondingly smaller test set (20% of train size, min 100)
-        total_test_len = len(test_full_dataset)
-        subset_test_size = min(total_test_len, max(100, int(subset_train_size * 0.2)))
-        test_indices = torch.randperm(total_test_len, generator=rng)[:subset_test_size]
-        test_subset = Subset(test_full_dataset, test_indices)
+        test_subset = test_full_dataset
     else:
         # Use the complete datasets
         train_subset = train_full_dataset

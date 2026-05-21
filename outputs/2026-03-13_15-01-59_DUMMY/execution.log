@@ -1,0 +1,222 @@
+2026-03-13 15:01:59 | INFO | Logger initialized. Saving logs to: ./outputs\2026-03-13_15-01-59_DUMMY\execution.log
+2026-03-13 15:01:59 | INFO | 
+============================================================
+2026-03-13 15:01:59 | INFO | [START] Running Experiment Suite in >>> DUMMY <<< mode
+2026-03-13 15:01:59 | INFO | [INFO] All outputs will be saved to: ./outputs\2026-03-13_15-01-59_DUMMY
+2026-03-13 15:01:59 | INFO | ============================================================
+
+2026-03-13 15:02:00 | INFO | 
+========================================
+2026-03-13 15:02:00 | INFO | PHASE 1 (DUMMY): DEEP ANALYSIS (20 EPOCHS)
+2026-03-13 15:02:00 | INFO | ========================================
+2026-03-13 15:02:00 | INFO | >>> Deep Training MNIST with Config: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3}
+2026-03-13 15:02:00 | INFO | >>> START RUN: P1_MNIST_FINAL | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'data_size': 10, 'epochs': 3}
+2026-03-13 15:02:57 | INFO | Epoch 1 | Train Loss: 2.3088 | Val Loss: 2.8415 | Val Acc: 0.1081
+2026-03-13 15:04:00 | INFO | Epoch 2 | Train Loss: 1.6801 | Val Loss: 2.6279 | Val Acc: 0.2451
+2026-03-13 15:05:02 | INFO | Epoch 3 | Train Loss: 1.1544 | Val Loss: 2.4441 | Val Acc: 0.4294
+2026-03-13 15:05:02 | INFO | [PERSISTENCE] Model saved to: ./outputs\2026-03-13_15-01-59_DUMMY\model_P1_MNIST_DUMMY.pth
+2026-03-13 15:05:03 | INFO | >>> Deep Training FashionMNIST with Config: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6}
+2026-03-13 15:05:03 | INFO | >>> START RUN: P1_FashionMNIST_FINAL | Configuration: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6, 'data_size': 10, 'epochs': 3}
+2026-03-13 15:07:32 | INFO | Epoch 1 | Train Loss: 2.3543 | Val Loss: 8.6420 | Val Acc: 0.2577
+2026-03-13 15:10:32 | INFO | Epoch 2 | Train Loss: 1.6530 | Val Loss: 10.7322 | Val Acc: 0.3085
+2026-03-13 15:13:22 | INFO | Epoch 3 | Train Loss: 1.3372 | Val Loss: 10.7059 | Val Acc: 0.3391
+2026-03-13 15:13:22 | INFO | [PERSISTENCE] Model saved to: ./outputs\2026-03-13_15-01-59_DUMMY\model_P1_FashionMNIST_DUMMY.pth
+2026-03-13 15:13:22 | INFO | 
+========================================
+2026-03-13 15:13:22 | INFO | PHASE 2 (DUMMY): DATA EFFICIENCY
+2026-03-13 15:13:22 | INFO | ========================================
+2026-03-13 15:13:22 | INFO | >>> Using Optimized Config for MNIST: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 5}
+2026-03-13 15:13:23 | INFO | >>> START RUN: P2_MNIST_Size_10_Run_1 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 5, 'data_size': 10}
+2026-03-13 15:14:17 | INFO | Epoch 1 | Train Loss: 2.3088 | Val Loss: 2.8415 | Val Acc: 0.1081
+2026-03-13 15:15:12 | INFO | Epoch 2 | Train Loss: 1.6801 | Val Loss: 2.6279 | Val Acc: 0.2451
+2026-03-13 15:16:12 | INFO | Epoch 3 | Train Loss: 1.1544 | Val Loss: 2.4441 | Val Acc: 0.4294
+2026-03-13 15:17:09 | INFO | Epoch 4 | Train Loss: 0.7392 | Val Loss: 2.5411 | Val Acc: 0.3887
+2026-03-13 15:18:11 | INFO | Epoch 5 | Train Loss: 0.4276 | Val Loss: 2.7774 | Val Acc: 0.3452
+2026-03-13 15:18:11 | INFO | >>> START RUN: P2_MNIST_Size_10_Run_2 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 5, 'data_size': 10}
+2026-03-13 15:19:11 | INFO | Epoch 1 | Train Loss: 2.4291 | Val Loss: 8.8825 | Val Acc: 0.1798
+2026-03-13 15:20:20 | INFO | Epoch 2 | Train Loss: 4.0207 | Val Loss: 11.5580 | Val Acc: 0.1474
+2026-03-13 15:21:28 | INFO | Epoch 3 | Train Loss: 5.0073 | Val Loss: 9.8009 | Val Acc: 0.1038
+2026-03-13 15:22:36 | INFO | Epoch 4 | Train Loss: 2.3413 | Val Loss: 9.4182 | Val Acc: 0.1226
+2026-03-13 15:23:43 | INFO | Epoch 5 | Train Loss: 2.0225 | Val Loss: 9.9859 | Val Acc: 0.1530
+2026-03-13 15:23:43 | INFO | >>> START RUN: P2_MNIST_Size_10_Run_3 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 5, 'data_size': 10}
+2026-03-13 15:24:46 | INFO | Epoch 1 | Train Loss: 2.3317 | Val Loss: 7.0293 | Val Acc: 0.1552
+2026-03-13 15:25:44 | INFO | Epoch 2 | Train Loss: 3.1642 | Val Loss: 6.8045 | Val Acc: 0.1345
+2026-03-13 15:26:37 | INFO | Epoch 3 | Train Loss: 1.8086 | Val Loss: 6.9013 | Val Acc: 0.1830
+2026-03-13 15:27:31 | INFO | Epoch 4 | Train Loss: 2.1119 | Val Loss: 7.3388 | Val Acc: 0.1361
+2026-03-13 15:28:25 | INFO | Epoch 5 | Train Loss: 1.5136 | Val Loss: 7.2609 | Val Acc: 0.2346
+2026-03-13 15:28:25 | INFO | >>> START RUN: P2_MNIST_Size_10_Run_4 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 5, 'data_size': 10}
+2026-03-13 15:29:22 | INFO | Epoch 1 | Train Loss: 2.2965 | Val Loss: 2.6842 | Val Acc: 0.3381
+2026-03-13 15:30:21 | INFO | Epoch 2 | Train Loss: 1.0944 | Val Loss: 4.0351 | Val Acc: 0.2826
+2026-03-13 15:31:17 | INFO | Epoch 3 | Train Loss: 0.5492 | Val Loss: 5.5758 | Val Acc: 0.2792
+2026-03-13 15:32:15 | INFO | Epoch 4 | Train Loss: 0.2740 | Val Loss: 6.9715 | Val Acc: 0.3249
+2026-03-13 15:33:11 | INFO | Epoch 5 | Train Loss: 0.1121 | Val Loss: 8.4919 | Val Acc: 0.3436
+2026-03-13 15:33:11 | INFO | >>> START RUN: P2_MNIST_Size_10_Run_5 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 5, 'data_size': 10}
+2026-03-13 15:34:09 | INFO | Epoch 1 | Train Loss: 2.2542 | Val Loss: 4.8365 | Val Acc: 0.1406
+2026-03-13 15:35:07 | INFO | Epoch 2 | Train Loss: 1.6400 | Val Loss: 5.5149 | Val Acc: 0.1091
+2026-03-13 15:36:03 | INFO | Epoch 3 | Train Loss: 1.6557 | Val Loss: 4.8191 | Val Acc: 0.2161
+2026-03-13 15:37:00 | INFO | Epoch 4 | Train Loss: 0.9743 | Val Loss: 4.5446 | Val Acc: 0.2906
+2026-03-13 15:37:57 | INFO | Epoch 5 | Train Loss: 0.6967 | Val Loss: 4.2036 | Val Acc: 0.2744
+2026-03-13 15:37:57 | INFO | >>> START RUN: P2_MNIST_Size_20_Run_1 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 5, 'data_size': 20}
+2026-03-13 15:38:55 | INFO | Epoch 1 | Train Loss: 2.3220 | Val Loss: 3.2022 | Val Acc: 0.2451
+2026-03-13 15:39:52 | INFO | Epoch 2 | Train Loss: 2.4178 | Val Loss: 2.4656 | Val Acc: 0.2964
+2026-03-13 15:40:50 | INFO | Epoch 3 | Train Loss: 1.7025 | Val Loss: 2.0277 | Val Acc: 0.3315
+2026-03-13 15:41:46 | INFO | Epoch 4 | Train Loss: 1.3407 | Val Loss: 1.8823 | Val Acc: 0.4491
+2026-03-13 15:42:44 | INFO | Epoch 5 | Train Loss: 1.1376 | Val Loss: 1.7168 | Val Acc: 0.5143
+2026-03-13 15:42:44 | INFO | >>> START RUN: P2_MNIST_Size_20_Run_2 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 5, 'data_size': 20}
+2026-03-13 15:43:41 | INFO | Epoch 1 | Train Loss: 2.3721 | Val Loss: 9.9651 | Val Acc: 0.1375
+2026-03-13 15:44:39 | INFO | Epoch 2 | Train Loss: 6.8605 | Val Loss: 11.8521 | Val Acc: 0.0974
+2026-03-13 15:45:37 | INFO | Epoch 3 | Train Loss: 8.8465 | Val Loss: 7.9418 | Val Acc: 0.1028
+2026-03-13 15:46:34 | INFO | Epoch 4 | Train Loss: 4.5879 | Val Loss: 5.7246 | Val Acc: 0.1115
+2026-03-13 15:47:31 | INFO | Epoch 5 | Train Loss: 2.7306 | Val Loss: 5.9174 | Val Acc: 0.2761
+2026-03-13 15:47:31 | INFO | >>> START RUN: P2_MNIST_Size_20_Run_3 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 5, 'data_size': 20}
+2026-03-13 15:48:29 | INFO | Epoch 1 | Train Loss: 2.3473 | Val Loss: 7.3859 | Val Acc: 0.1018
+2026-03-13 15:49:27 | INFO | Epoch 2 | Train Loss: 4.5480 | Val Loss: 5.8699 | Val Acc: 0.0980
+2026-03-13 15:50:25 | INFO | Epoch 3 | Train Loss: 3.6796 | Val Loss: 4.4457 | Val Acc: 0.1395
+2026-03-13 15:51:22 | INFO | Epoch 4 | Train Loss: 2.5497 | Val Loss: 4.3177 | Val Acc: 0.2702
+2026-03-13 15:52:19 | INFO | Epoch 5 | Train Loss: 2.1553 | Val Loss: 4.3217 | Val Acc: 0.2120
+2026-03-13 15:52:19 | INFO | >>> START RUN: P2_MNIST_Size_20_Run_4 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 5, 'data_size': 20}
+2026-03-13 15:53:17 | INFO | Epoch 1 | Train Loss: 2.2871 | Val Loss: 2.7285 | Val Acc: 0.3195
+2026-03-13 15:54:15 | INFO | Epoch 2 | Train Loss: 1.5686 | Val Loss: 2.4531 | Val Acc: 0.3187
+2026-03-13 15:55:13 | INFO | Epoch 3 | Train Loss: 1.0048 | Val Loss: 2.3107 | Val Acc: 0.4629
+2026-03-13 15:56:11 | INFO | Epoch 4 | Train Loss: 0.7003 | Val Loss: 2.4937 | Val Acc: 0.4760
+2026-03-13 15:57:07 | INFO | Epoch 5 | Train Loss: 0.4384 | Val Loss: 2.8225 | Val Acc: 0.4694
+2026-03-13 15:57:07 | INFO | >>> START RUN: P2_MNIST_Size_20_Run_5 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 5, 'data_size': 20}
+2026-03-13 15:58:05 | INFO | Epoch 1 | Train Loss: 2.2739 | Val Loss: 5.2234 | Val Acc: 0.1269
+2026-03-13 15:59:03 | INFO | Epoch 2 | Train Loss: 3.3954 | Val Loss: 4.3307 | Val Acc: 0.1079
+2026-03-13 16:00:00 | INFO | Epoch 3 | Train Loss: 2.9753 | Val Loss: 2.5993 | Val Acc: 0.2772
+2026-03-13 16:00:58 | INFO | Epoch 4 | Train Loss: 1.4802 | Val Loss: 2.1829 | Val Acc: 0.2256
+2026-03-13 16:01:54 | INFO | Epoch 5 | Train Loss: 1.1988 | Val Loss: 2.0071 | Val Acc: 0.3999
+2026-03-13 16:01:54 | INFO | >>> Using Optimized Config for FashionMNIST: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6, 'epochs': 5}
+2026-03-13 16:01:54 | INFO | >>> START RUN: P2_FashionMNIST_Size_10_Run_1 | Configuration: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6, 'epochs': 5, 'data_size': 10}
+2026-03-13 16:04:07 | INFO | Epoch 1 | Train Loss: 2.3543 | Val Loss: 8.6420 | Val Acc: 0.2577
+2026-03-13 16:06:18 | INFO | Epoch 2 | Train Loss: 1.6530 | Val Loss: 10.7322 | Val Acc: 0.3085
+2026-03-13 16:08:31 | INFO | Epoch 3 | Train Loss: 1.3372 | Val Loss: 10.7059 | Val Acc: 0.3391
+2026-03-13 16:10:43 | INFO | Epoch 4 | Train Loss: 0.5730 | Val Loss: 10.4844 | Val Acc: 0.3167
+2026-03-13 16:12:53 | INFO | Epoch 5 | Train Loss: 0.3850 | Val Loss: 11.0006 | Val Acc: 0.3061
+2026-03-13 16:12:53 | INFO | >>> START RUN: P2_FashionMNIST_Size_10_Run_2 | Configuration: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6, 'epochs': 5, 'data_size': 10}
+2026-03-13 16:15:06 | INFO | Epoch 1 | Train Loss: 2.3396 | Val Loss: 11.1395 | Val Acc: 0.1402
+2026-03-13 16:17:18 | INFO | Epoch 2 | Train Loss: 4.5119 | Val Loss: 9.8551 | Val Acc: 0.1782
+2026-03-13 16:19:31 | INFO | Epoch 3 | Train Loss: 2.7790 | Val Loss: 9.5481 | Val Acc: 0.2050
+2026-03-13 16:21:42 | INFO | Epoch 4 | Train Loss: 2.2008 | Val Loss: 8.8452 | Val Acc: 0.2181
+2026-03-13 16:23:55 | INFO | Epoch 5 | Train Loss: 0.5887 | Val Loss: 10.8847 | Val Acc: 0.2393
+2026-03-13 16:23:55 | INFO | >>> START RUN: P2_FashionMNIST_Size_10_Run_3 | Configuration: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6, 'epochs': 5, 'data_size': 10}
+2026-03-13 16:26:07 | INFO | Epoch 1 | Train Loss: 2.2982 | Val Loss: 11.2367 | Val Acc: 0.1520
+2026-03-13 16:28:29 | INFO | Epoch 2 | Train Loss: 3.5936 | Val Loss: 10.4912 | Val Acc: 0.1487
+2026-03-13 16:30:49 | INFO | Epoch 3 | Train Loss: 2.2583 | Val Loss: 8.1537 | Val Acc: 0.3037
+2026-03-13 16:32:48 | INFO | Epoch 4 | Train Loss: 1.7161 | Val Loss: 6.8517 | Val Acc: 0.3477
+2026-03-13 16:34:43 | INFO | Epoch 5 | Train Loss: 0.7924 | Val Loss: 5.7174 | Val Acc: 0.3616
+2026-03-13 16:34:43 | INFO | >>> START RUN: P2_FashionMNIST_Size_10_Run_4 | Configuration: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6, 'epochs': 5, 'data_size': 10}
+2026-03-13 16:36:40 | INFO | Epoch 1 | Train Loss: 2.3379 | Val Loss: 4.4589 | Val Acc: 0.2062
+2026-03-13 16:38:38 | INFO | Epoch 2 | Train Loss: 1.1279 | Val Loss: 5.3616 | Val Acc: 0.2056
+2026-03-13 16:40:33 | INFO | Epoch 3 | Train Loss: 2.0413 | Val Loss: 3.8782 | Val Acc: 0.3395
+2026-03-13 16:42:28 | INFO | Epoch 4 | Train Loss: 0.9055 | Val Loss: 3.8660 | Val Acc: 0.3309
+2026-03-13 16:44:23 | INFO | Epoch 5 | Train Loss: 0.1996 | Val Loss: 4.6279 | Val Acc: 0.2841
+2026-03-13 16:44:23 | INFO | >>> START RUN: P2_FashionMNIST_Size_10_Run_5 | Configuration: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6, 'epochs': 5, 'data_size': 10}
+2026-03-13 16:46:18 | INFO | Epoch 1 | Train Loss: 2.2754 | Val Loss: 11.3106 | Val Acc: 0.1351
+2026-03-13 16:48:16 | INFO | Epoch 2 | Train Loss: 2.8503 | Val Loss: 15.0175 | Val Acc: 0.2486
+2026-03-13 16:50:10 | INFO | Epoch 3 | Train Loss: 4.3991 | Val Loss: 13.9053 | Val Acc: 0.2115
+2026-03-13 16:52:06 | INFO | Epoch 4 | Train Loss: 4.2162 | Val Loss: 11.0784 | Val Acc: 0.2142
+2026-03-13 16:54:01 | INFO | Epoch 5 | Train Loss: 2.9596 | Val Loss: 7.7054 | Val Acc: 0.2683
+2026-03-13 16:54:01 | INFO | >>> START RUN: P2_FashionMNIST_Size_20_Run_1 | Configuration: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6, 'epochs': 5, 'data_size': 20}
+2026-03-13 16:55:56 | INFO | Epoch 1 | Train Loss: 2.3604 | Val Loss: 7.9372 | Val Acc: 0.3091
+2026-03-13 16:57:51 | INFO | Epoch 2 | Train Loss: 3.3984 | Val Loss: 8.8871 | Val Acc: 0.1974
+2026-03-13 16:59:46 | INFO | Epoch 3 | Train Loss: 4.4594 | Val Loss: 6.0774 | Val Acc: 0.2717
+2026-03-13 17:01:41 | INFO | Epoch 4 | Train Loss: 1.5223 | Val Loss: 4.2600 | Val Acc: 0.3850
+2026-03-13 17:03:37 | INFO | Epoch 5 | Train Loss: 0.8781 | Val Loss: 4.0121 | Val Acc: 0.3468
+2026-03-13 17:03:37 | INFO | >>> START RUN: P2_FashionMNIST_Size_20_Run_2 | Configuration: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6, 'epochs': 5, 'data_size': 20}
+2026-03-13 17:05:32 | INFO | Epoch 1 | Train Loss: 2.3341 | Val Loss: 10.0365 | Val Acc: 0.1000
+2026-03-13 17:07:28 | INFO | Epoch 2 | Train Loss: 5.8484 | Val Loss: 10.5232 | Val Acc: 0.1863
+2026-03-13 17:09:22 | INFO | Epoch 3 | Train Loss: 6.3574 | Val Loss: 6.8190 | Val Acc: 0.1927
+2026-03-13 17:11:16 | INFO | Epoch 4 | Train Loss: 4.4974 | Val Loss: 4.1565 | Val Acc: 0.2683
+2026-03-13 17:13:12 | INFO | Epoch 5 | Train Loss: 3.1088 | Val Loss: 2.4382 | Val Acc: 0.3832
+2026-03-13 17:13:12 | INFO | >>> START RUN: P2_FashionMNIST_Size_20_Run_3 | Configuration: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6, 'epochs': 5, 'data_size': 20}
+2026-03-13 17:15:06 | INFO | Epoch 1 | Train Loss: 2.3521 | Val Loss: 9.1567 | Val Acc: 0.2009
+2026-03-13 17:17:01 | INFO | Epoch 2 | Train Loss: 4.2792 | Val Loss: 8.8300 | Val Acc: 0.2956
+2026-03-13 17:18:56 | INFO | Epoch 3 | Train Loss: 3.6108 | Val Loss: 6.6456 | Val Acc: 0.2816
+2026-03-13 17:20:51 | INFO | Epoch 4 | Train Loss: 2.4741 | Val Loss: 3.8993 | Val Acc: 0.3446
+2026-03-13 17:22:48 | INFO | Epoch 5 | Train Loss: 1.1450 | Val Loss: 4.0504 | Val Acc: 0.2037
+2026-03-13 17:22:48 | INFO | >>> START RUN: P2_FashionMNIST_Size_20_Run_4 | Configuration: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6, 'epochs': 5, 'data_size': 20}
+2026-03-13 17:24:43 | INFO | Epoch 1 | Train Loss: 2.3351 | Val Loss: 5.1446 | Val Acc: 0.2112
+2026-03-13 17:26:38 | INFO | Epoch 2 | Train Loss: 2.2788 | Val Loss: 3.9171 | Val Acc: 0.2148
+2026-03-13 17:28:33 | INFO | Epoch 3 | Train Loss: 1.8653 | Val Loss: 2.7702 | Val Acc: 0.2548
+2026-03-13 17:30:28 | INFO | Epoch 4 | Train Loss: 1.4018 | Val Loss: 2.7447 | Val Acc: 0.3569
+2026-03-13 17:32:23 | INFO | Epoch 5 | Train Loss: 0.4759 | Val Loss: 3.1290 | Val Acc: 0.3562
+2026-03-13 17:32:23 | INFO | >>> START RUN: P2_FashionMNIST_Size_20_Run_5 | Configuration: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6, 'epochs': 5, 'data_size': 20}
+2026-03-13 17:34:18 | INFO | Epoch 1 | Train Loss: 2.3088 | Val Loss: 11.8318 | Val Acc: 0.1971
+2026-03-13 17:36:13 | INFO | Epoch 2 | Train Loss: 5.4138 | Val Loss: 15.6025 | Val Acc: 0.1767
+2026-03-13 17:38:10 | INFO | Epoch 3 | Train Loss: 8.1049 | Val Loss: 10.4372 | Val Acc: 0.1354
+2026-03-13 17:40:05 | INFO | Epoch 4 | Train Loss: 4.0032 | Val Loss: 9.1626 | Val Acc: 0.1661
+2026-03-13 17:41:59 | INFO | Epoch 5 | Train Loss: 5.4368 | Val Loss: 7.7716 | Val Acc: 0.1725
+2026-03-13 17:41:59 | INFO | 
+========================================
+2026-03-13 17:41:59 | INFO | PHASE 3 (DUMMY): BINARY STABILITY
+2026-03-13 17:41:59 | INFO | ========================================
+2026-03-13 17:41:59 | INFO | >>> PROCESSING: MNIST (Binary)
+2026-03-13 17:41:59 | INFO | >>> START RUN: P3_MNIST_Run_1 | Configuration: {'dataset': 'MNIST', 'data_size': 'fullset', 'epochs': 1, 'batch_size': 25, 'n_filters': 1, 'time': 1.0, 'time_steps': 1, 'binary_mode': True}
+2026-03-13 17:42:18 | INFO | Epoch 1 | Train Loss: 0.1732 | Val Loss: 0.0092 | Val Acc: 0.9991
+2026-03-13 17:42:19 | INFO | >>> START RUN: P3_MNIST_Run_2 | Configuration: {'dataset': 'MNIST', 'data_size': 'fullset', 'epochs': 1, 'batch_size': 25, 'n_filters': 1, 'time': 1.0, 'time_steps': 1, 'binary_mode': True}
+2026-03-13 17:42:37 | INFO | Epoch 1 | Train Loss: 0.1732 | Val Loss: 0.0092 | Val Acc: 0.9991
+2026-03-13 17:42:38 | INFO | >>> START RUN: P3_MNIST_Run_3 | Configuration: {'dataset': 'MNIST', 'data_size': 'fullset', 'epochs': 1, 'batch_size': 25, 'n_filters': 1, 'time': 1.0, 'time_steps': 1, 'binary_mode': True}
+2026-03-13 17:42:56 | INFO | Epoch 1 | Train Loss: 0.1732 | Val Loss: 0.0092 | Val Acc: 0.9991
+2026-03-13 17:42:56 | INFO | >>> START RUN: P3_MNIST_Run_4 | Configuration: {'dataset': 'MNIST', 'data_size': 'fullset', 'epochs': 1, 'batch_size': 25, 'n_filters': 1, 'time': 1.0, 'time_steps': 1, 'binary_mode': True}
+2026-03-13 17:43:15 | INFO | Epoch 1 | Train Loss: 0.1732 | Val Loss: 0.0092 | Val Acc: 0.9991
+2026-03-13 17:43:15 | INFO | >>> START RUN: P3_MNIST_Run_5 | Configuration: {'dataset': 'MNIST', 'data_size': 'fullset', 'epochs': 1, 'batch_size': 25, 'n_filters': 1, 'time': 1.0, 'time_steps': 1, 'binary_mode': True}
+2026-03-13 17:43:33 | INFO | Epoch 1 | Train Loss: 0.1732 | Val Loss: 0.0092 | Val Acc: 0.9991
+2026-03-13 17:43:33 | INFO | Result for MNIST -> Accuracy: 99.91 +- 0.00%
+2026-03-13 17:43:33 | INFO | >>> PROCESSING: FashionMNIST (Binary)
+2026-03-13 17:43:33 | INFO | >>> START RUN: P3_FashionMNIST_Run_1 | Configuration: {'dataset': 'FashionMNIST', 'data_size': 'fullset', 'epochs': 1, 'batch_size': 25, 'n_filters': 1, 'time': 1.0, 'time_steps': 1, 'binary_mode': True}
+2026-03-13 17:43:51 | INFO | Epoch 1 | Train Loss: 0.2734 | Val Loss: 0.0967 | Val Acc: 0.9620
+2026-03-13 17:43:51 | INFO | >>> START RUN: P3_FashionMNIST_Run_2 | Configuration: {'dataset': 'FashionMNIST', 'data_size': 'fullset', 'epochs': 1, 'batch_size': 25, 'n_filters': 1, 'time': 1.0, 'time_steps': 1, 'binary_mode': True}
+2026-03-13 17:44:09 | INFO | Epoch 1 | Train Loss: 0.2734 | Val Loss: 0.0967 | Val Acc: 0.9620
+2026-03-13 17:44:09 | INFO | >>> START RUN: P3_FashionMNIST_Run_3 | Configuration: {'dataset': 'FashionMNIST', 'data_size': 'fullset', 'epochs': 1, 'batch_size': 25, 'n_filters': 1, 'time': 1.0, 'time_steps': 1, 'binary_mode': True}
+2026-03-13 17:44:27 | INFO | Epoch 1 | Train Loss: 0.2734 | Val Loss: 0.0967 | Val Acc: 0.9620
+2026-03-13 17:44:27 | INFO | >>> START RUN: P3_FashionMNIST_Run_4 | Configuration: {'dataset': 'FashionMNIST', 'data_size': 'fullset', 'epochs': 1, 'batch_size': 25, 'n_filters': 1, 'time': 1.0, 'time_steps': 1, 'binary_mode': True}
+2026-03-13 17:44:45 | INFO | Epoch 1 | Train Loss: 0.2734 | Val Loss: 0.0967 | Val Acc: 0.9620
+2026-03-13 17:44:45 | INFO | >>> START RUN: P3_FashionMNIST_Run_5 | Configuration: {'dataset': 'FashionMNIST', 'data_size': 'fullset', 'epochs': 1, 'batch_size': 25, 'n_filters': 1, 'time': 1.0, 'time_steps': 1, 'binary_mode': True}
+2026-03-13 17:45:03 | INFO | Epoch 1 | Train Loss: 0.2734 | Val Loss: 0.0967 | Val Acc: 0.9620
+2026-03-13 17:45:03 | INFO | Result for FashionMNIST -> Accuracy: 96.20 +- 0.00%
+2026-03-13 17:45:03 | INFO | 
+========================================
+2026-03-13 17:45:03 | INFO | PHASE 4 (DUMMY): NOISE RESILIENCE
+2026-03-13 17:45:03 | INFO | ========================================
+2026-03-13 17:45:03 | INFO | >>> Processing Noise Resilience for MNIST
+2026-03-13 17:45:03 | INFO | >>> START RUN: P4_MNIST_Noise_0.0 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 5, 'data_size': 10, 'noise_prob': 0.0}
+2026-03-13 17:45:52 | INFO | Epoch 1 | Train Loss: 2.3088 | Val Loss: 2.8415 | Val Acc: 0.1081
+2026-03-13 17:46:42 | INFO | Epoch 2 | Train Loss: 1.6801 | Val Loss: 2.6279 | Val Acc: 0.2451
+2026-03-13 17:47:31 | INFO | Epoch 3 | Train Loss: 1.1544 | Val Loss: 2.4441 | Val Acc: 0.4294
+2026-03-13 17:48:20 | INFO | Epoch 4 | Train Loss: 0.7392 | Val Loss: 2.5411 | Val Acc: 0.3887
+2026-03-13 17:49:09 | INFO | Epoch 5 | Train Loss: 0.4276 | Val Loss: 2.7774 | Val Acc: 0.3452
+2026-03-13 17:49:09 | INFO | >>> START RUN: P4_MNIST_Noise_0.01 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 5, 'data_size': 10, 'noise_prob': 0.01}
+2026-03-13 17:49:58 | INFO | Epoch 1 | Train Loss: 2.3088 | Val Loss: 2.8415 | Val Acc: 0.1081
+2026-03-13 17:50:47 | INFO | Epoch 2 | Train Loss: 1.6801 | Val Loss: 2.6279 | Val Acc: 0.2451
+2026-03-13 17:51:38 | INFO | Epoch 3 | Train Loss: 1.1544 | Val Loss: 2.4441 | Val Acc: 0.4294
+2026-03-13 17:52:27 | INFO | Epoch 4 | Train Loss: 0.7392 | Val Loss: 2.5411 | Val Acc: 0.3887
+2026-03-13 17:53:17 | INFO | Epoch 5 | Train Loss: 0.4276 | Val Loss: 2.7774 | Val Acc: 0.3452
+2026-03-13 17:53:17 | INFO | >>> START RUN: P4_MNIST_Noise_0.05 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 5, 'data_size': 10, 'noise_prob': 0.05}
+2026-03-13 17:54:06 | INFO | Epoch 1 | Train Loss: 2.3088 | Val Loss: 2.8415 | Val Acc: 0.1081
+2026-03-13 17:54:55 | INFO | Epoch 2 | Train Loss: 1.6801 | Val Loss: 2.6279 | Val Acc: 0.2451
+2026-03-13 17:55:44 | INFO | Epoch 3 | Train Loss: 1.1544 | Val Loss: 2.4441 | Val Acc: 0.4294
+2026-03-13 17:56:34 | INFO | Epoch 4 | Train Loss: 0.7392 | Val Loss: 2.5411 | Val Acc: 0.3887
+2026-03-13 17:57:22 | INFO | Epoch 5 | Train Loss: 0.4276 | Val Loss: 2.7774 | Val Acc: 0.3452
+2026-03-13 17:57:23 | INFO | >>> Processing Noise Resilience for FashionMNIST
+2026-03-13 17:57:23 | INFO | >>> START RUN: P4_FashionMNIST_Noise_0.0 | Configuration: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6, 'epochs': 5, 'data_size': 10, 'noise_prob': 0.0}
+2026-03-13 17:59:17 | INFO | Epoch 1 | Train Loss: 2.3543 | Val Loss: 8.6420 | Val Acc: 0.2577
+2026-03-13 18:01:11 | INFO | Epoch 2 | Train Loss: 1.6530 | Val Loss: 10.7322 | Val Acc: 0.3085
+2026-03-13 18:03:07 | INFO | Epoch 3 | Train Loss: 1.3372 | Val Loss: 10.7059 | Val Acc: 0.3391
+2026-03-13 18:05:01 | INFO | Epoch 4 | Train Loss: 0.5730 | Val Loss: 10.4844 | Val Acc: 0.3167
+2026-03-13 18:06:56 | INFO | Epoch 5 | Train Loss: 0.3850 | Val Loss: 11.0006 | Val Acc: 0.3061
+2026-03-13 18:06:56 | INFO | >>> START RUN: P4_FashionMNIST_Noise_0.01 | Configuration: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6, 'epochs': 5, 'data_size': 10, 'noise_prob': 0.01}
+2026-03-13 18:08:51 | INFO | Epoch 1 | Train Loss: 2.3543 | Val Loss: 8.6420 | Val Acc: 0.2577
+2026-03-13 18:10:45 | INFO | Epoch 2 | Train Loss: 1.6530 | Val Loss: 10.7322 | Val Acc: 0.3085
+2026-03-13 18:12:39 | INFO | Epoch 3 | Train Loss: 1.3372 | Val Loss: 10.7059 | Val Acc: 0.3391
+2026-03-13 18:14:34 | INFO | Epoch 4 | Train Loss: 0.5730 | Val Loss: 10.4844 | Val Acc: 0.3167
+2026-03-13 18:16:29 | INFO | Epoch 5 | Train Loss: 0.3850 | Val Loss: 11.0006 | Val Acc: 0.3061
+2026-03-13 18:16:29 | INFO | >>> START RUN: P4_FashionMNIST_Noise_0.05 | Configuration: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6, 'epochs': 5, 'data_size': 10, 'noise_prob': 0.05}
+2026-03-13 18:18:23 | INFO | Epoch 1 | Train Loss: 2.3543 | Val Loss: 8.6420 | Val Acc: 0.2577
+2026-03-13 18:20:17 | INFO | Epoch 2 | Train Loss: 1.6530 | Val Loss: 10.7322 | Val Acc: 0.3085
+2026-03-13 18:22:14 | INFO | Epoch 3 | Train Loss: 1.3372 | Val Loss: 10.7059 | Val Acc: 0.3391
+2026-03-13 18:24:09 | INFO | Epoch 4 | Train Loss: 0.5730 | Val Loss: 10.4844 | Val Acc: 0.3167
+2026-03-13 18:26:03 | INFO | Epoch 5 | Train Loss: 0.3850 | Val Loss: 11.0006 | Val Acc: 0.3061
+2026-03-13 18:26:03 | INFO | [PERSISTENCE] Full data saved to ./outputs\2026-03-13_15-01-59_DUMMY\final_results_DUMMY.json
+2026-03-13 18:26:03 | INFO | 
+[FINISH] All experiments completed. Results saved in ./outputs\2026-03-13_15-01-59_DUMMY

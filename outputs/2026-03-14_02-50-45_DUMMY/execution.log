@@ -1,0 +1,13 @@
+2026-03-14 02:50:45 | INFO | Logger initialized. Saving logs to: ./outputs\2026-03-14_02-50-45_DUMMY\execution.log
+2026-03-14 02:50:45 | INFO | 
+============================================================
+2026-03-14 02:50:45 | INFO | [START] Running Experiment Suite in >>> DUMMY <<< mode
+2026-03-14 02:50:45 | INFO | [INFO] All outputs will be saved to: ./outputs\2026-03-14_02-50-45_DUMMY
+2026-03-14 02:50:45 | INFO | ============================================================
+
+2026-03-14 02:50:45 | INFO | 
+========================================
+2026-03-14 02:50:45 | INFO | PHASE 4 (DUMMY): NOISE RESILIENCE
+2026-03-14 02:50:45 | INFO | ========================================
+2026-03-14 02:50:45 | INFO | >>> Processing Noise Resilience for MNIST
+2026-03-14 02:50:45 | INFO | >>> START RUN: P4_MNIST_Noise_0.0 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 2, 'data_size': 5, 'noise_prob': 0.0}

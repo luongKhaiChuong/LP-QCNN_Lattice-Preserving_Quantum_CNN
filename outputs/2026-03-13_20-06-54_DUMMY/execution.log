@@ -1,0 +1,19 @@
+2026-03-13 20:06:54 | INFO | Logger initialized. Saving logs to: ./outputs\2026-03-13_20-06-54_DUMMY\execution.log
+2026-03-13 20:06:54 | INFO | 
+============================================================
+2026-03-13 20:06:54 | INFO | [START] Running Experiment Suite in >>> DUMMY <<< mode
+2026-03-13 20:06:54 | INFO | [INFO] All outputs will be saved to: ./outputs\2026-03-13_20-06-54_DUMMY
+2026-03-13 20:06:54 | INFO | ============================================================
+
+2026-03-13 20:06:54 | INFO | 
+========================================
+2026-03-13 20:06:54 | INFO | PHASE 1 (DUMMY): DEEP ANALYSIS (20 EPOCHS)
+2026-03-13 20:06:54 | INFO | ========================================
+2026-03-13 20:06:54 | INFO | >>> Deep Training MNIST with Config: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3}
+2026-03-13 20:06:54 | INFO | >>> START RUN: P1_MNIST_FINAL | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'data_size': 10, 'epochs': 3}
+2026-03-13 20:08:21 | INFO | Epoch 1 | Train Loss: 2.3088 | Val Loss: 2.8415 | Val Acc: 0.1081
+2026-03-13 20:09:46 | INFO | Epoch 2 | Train Loss: 1.6801 | Val Loss: 2.6279 | Val Acc: 0.2451
+2026-03-13 20:11:09 | INFO | Epoch 3 | Train Loss: 1.1544 | Val Loss: 2.4441 | Val Acc: 0.4294
+2026-03-13 20:11:09 | INFO | [PERSISTENCE] Model saved to: ./outputs\2026-03-13_20-06-54_DUMMY\model_P1_MNIST_DUMMY.pth
+2026-03-13 20:11:10 | INFO | >>> Deep Training FashionMNIST with Config: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6}
+2026-03-13 20:11:10 | INFO | >>> START RUN: P1_FashionMNIST_FINAL | Configuration: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6, 'data_size': 10, 'epochs': 3}

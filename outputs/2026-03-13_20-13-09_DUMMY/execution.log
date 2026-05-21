@@ -1,0 +1,44 @@
+2026-03-13 20:13:09 | INFO | Logger initialized. Saving logs to: ./outputs\2026-03-13_20-13-09_DUMMY\execution.log
+2026-03-13 20:13:09 | INFO | 
+============================================================
+2026-03-13 20:13:09 | INFO | [START] Running Experiment Suite in >>> DUMMY <<< mode
+2026-03-13 20:13:09 | INFO | [INFO] All outputs will be saved to: ./outputs\2026-03-13_20-13-09_DUMMY
+2026-03-13 20:13:09 | INFO | ============================================================
+
+2026-03-13 20:13:09 | INFO | 
+========================================
+2026-03-13 20:13:09 | INFO | PHASE 1 (DUMMY): DEEP ANALYSIS (20 EPOCHS)
+2026-03-13 20:13:09 | INFO | ========================================
+2026-03-13 20:13:09 | INFO | >>> Deep Training MNIST with Config: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3}
+2026-03-13 20:13:09 | INFO | >>> START RUN: P1_MNIST_FINAL | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'data_size': 10, 'epochs': 3}
+2026-03-13 20:14:35 | INFO | Epoch 1 | Train Loss: 2.3088 | Val Loss: 2.8415 | Val Acc: 0.1081
+2026-03-13 20:16:03 | INFO | Epoch 2 | Train Loss: 1.6801 | Val Loss: 2.6279 | Val Acc: 0.2451
+2026-03-13 20:17:33 | INFO | Epoch 3 | Train Loss: 1.1544 | Val Loss: 2.4441 | Val Acc: 0.4294
+2026-03-13 20:17:33 | INFO | [PERSISTENCE] Model saved to: ./outputs\2026-03-13_20-13-09_DUMMY\model_P1_MNIST_DUMMY.pth
+2026-03-13 20:17:33 | INFO | >>> Deep Training FashionMNIST with Config: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6}
+2026-03-13 20:17:34 | INFO | >>> START RUN: P1_FashionMNIST_FINAL | Configuration: {'dataset': 'FashionMNIST', 'time': 5.0, 'time_steps': 5, 'n_filters': 6, 'data_size': 10, 'epochs': 3}
+2026-03-13 20:21:02 | INFO | Epoch 1 | Train Loss: 2.3543 | Val Loss: 8.6420 | Val Acc: 0.2577
+2026-03-13 20:24:34 | INFO | Epoch 2 | Train Loss: 1.6530 | Val Loss: 10.7322 | Val Acc: 0.3085
+2026-03-13 20:28:19 | INFO | Epoch 3 | Train Loss: 1.3372 | Val Loss: 10.7059 | Val Acc: 0.3391
+2026-03-13 20:28:19 | INFO | [PERSISTENCE] Model saved to: ./outputs\2026-03-13_20-13-09_DUMMY\model_P1_FashionMNIST_DUMMY.pth
+2026-03-13 20:28:19 | INFO | 
+========================================
+2026-03-13 20:28:19 | INFO | PHASE 2 (DUMMY): DATA EFFICIENCY
+2026-03-13 20:28:19 | INFO | ========================================
+2026-03-13 20:28:19 | INFO | >>> Using Optimized Config for MNIST: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 5}
+2026-03-13 20:28:19 | INFO | >>> START RUN: P2_MNIST_Size_10_Run_1 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 5, 'data_size': 10}
+2026-03-13 20:29:36 | INFO | Epoch 1 | Train Loss: 2.3088 | Val Loss: 2.8415 | Val Acc: 0.1081
+2026-03-13 20:30:35 | INFO | Epoch 2 | Train Loss: 1.6801 | Val Loss: 2.6279 | Val Acc: 0.2451
+2026-03-13 20:31:42 | INFO | Epoch 3 | Train Loss: 1.1544 | Val Loss: 2.4441 | Val Acc: 0.4294
+2026-03-13 20:32:58 | INFO | Epoch 4 | Train Loss: 0.7392 | Val Loss: 2.5411 | Val Acc: 0.3887
+2026-03-13 20:34:01 | INFO | Epoch 5 | Train Loss: 0.4276 | Val Loss: 2.7774 | Val Acc: 0.3452
+2026-03-13 20:34:01 | INFO | >>> START RUN: P2_MNIST_Size_10_Run_2 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 5, 'data_size': 10}
+2026-03-13 20:35:02 | INFO | Epoch 1 | Train Loss: 2.4291 | Val Loss: 8.8825 | Val Acc: 0.1798
+2026-03-13 20:36:05 | INFO | Epoch 2 | Train Loss: 4.0207 | Val Loss: 11.5580 | Val Acc: 0.1474
+2026-03-13 20:37:10 | INFO | Epoch 3 | Train Loss: 5.0073 | Val Loss: 9.8009 | Val Acc: 0.1038
+2026-03-13 20:38:18 | INFO | Epoch 4 | Train Loss: 2.3413 | Val Loss: 9.4182 | Val Acc: 0.1226
+2026-03-13 20:39:24 | INFO | Epoch 5 | Train Loss: 2.0225 | Val Loss: 9.9859 | Val Acc: 0.1530
+2026-03-13 20:39:24 | INFO | >>> START RUN: P2_MNIST_Size_10_Run_3 | Configuration: {'dataset': 'MNIST', 'time': 2.0, 'time_steps': 4, 'n_filters': 3, 'epochs': 5, 'data_size': 10}
+2026-03-13 20:40:31 | INFO | Epoch 1 | Train Loss: 2.3317 | Val Loss: 7.0293 | Val Acc: 0.1552
+2026-03-13 20:41:36 | INFO | Epoch 2 | Train Loss: 3.1642 | Val Loss: 6.8045 | Val Acc: 0.1345
+2026-03-13 20:42:42 | INFO | Epoch 3 | Train Loss: 1.8086 | Val Loss: 6.9013 | Val Acc: 0.1830

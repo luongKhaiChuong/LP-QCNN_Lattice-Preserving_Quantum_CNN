@@ -197,7 +197,8 @@ class Analyzer:
                         lambda p: get_quantum_state(x_val, p, qnn_model.time_dyn, qnn_model.time_steps).imag, 
                         current_params
                     )
-                    jacobian = (jac_real + 1j * jac_imag).to(dtype=torch.complex64)
+                    # Explicitly cast to the target device alongside the complex type casting
+                    jacobian = (jac_real + 1j * jac_imag).to(dtype=torch.complex64, device=config.DEVICE)
                     
                     # 2. Get the State Vector |psi>
                     state_vector = get_quantum_state(

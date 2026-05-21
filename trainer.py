@@ -48,12 +48,14 @@ def train_experiment(config_dict, run_name, analyze_physics=False, max_steps=Non
     
     # 3. Model & Optimizer Initialization
     num_classes = 2 if use_binary_mode else 10
+    noise_prob = config_dict.get('noise_prob', 0.0)
     
     model = LPQCNN(
         n_filters=config_dict['n_filters'], 
         time_dyn=config_dict['time'], 
         time_steps=config_dict['time_steps'], 
-        n_classes=num_classes
+        n_classes=num_classes,
+        noise_prob=noise_prob
     ).to(config.DEVICE)
     
     optimizer = torch.optim.Adam(model.parameters(), lr=0.01)

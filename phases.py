@@ -1,6 +1,5 @@
 import itertools
 import matplotlib
-matplotlib.use('Agg') 
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 from matplotlib.ticker import MaxNLocator
@@ -10,158 +9,61 @@ import numpy as np
 from tqdm import tqdm
 from trainer import train_experiment
 
-def run_phase_1():
+matplotlib.use('Agg') 
+
+def run_phase_1(best_configs):
+    """
+    Executes Phase 1: Deep Analysis & Physical Metrics.
+
+    - Experimental Goal:
+    Perform a comprehensive training run (20 epochs) using the optimal configurations 
+    found from various trials. This phase analyzes the model's convergence and physical properties 
+    (BCH Error, Fisher Rank) over time.
+
+    - Process:
+        + Loads the best configuration from Phase 2.
+        + Trains for extended epochs (20) on the full dataset.
+        + Computes BCH Error and Fisher Rank at each epoch.
+        + Saves the trained model weights.
+        + Plots: Loss/Accuracy Evolution, BCH Error Evolution, Fisher Rank Evolution.
+
+    Args:
+        best_configs (dict): containing optimal parameters.
+    """
     config.LOGGER.info("\n" + "="*40)
-    config.LOGGER.info(f"PHASE 1 ({config.MODE}): OPTIMAL FILTER SEARCH")
+    config.LOGGER.info(f"PHASE 1 ({config.MODE}): DEEP ANALYSIS (20 EPOCHS)")
     config.LOGGER.info("="*40)
     
     phase1_results = []
     
     if config.MODE == 'DUMMY':
-        datasets_config = {'MNIST': range(1, 3), 'FashionMNIST': range(1, 3)}
-        data_size, epochs = 1000, 2
-    else:
-        datasets_config = {'MNIST': range(1, 4), 'FashionMNIST': range(1, 7)}
-        data_size, epochs = 25000, 5
-    
-    best_configs = {}
-    
-    for ds_name, filter_range in datasets_config.items():
-        best_acc = -1; best_loss = float('inf'); best_filter = 1
-        filters_list, acc_list, time_list = [], [], []
-
-        pbar = tqdm(filter_range, desc=f"P1 {ds_name} Filters")
-        
-        for f in pbar:
-            cfg = {'dataset': ds_name, 'data_size': data_size, 'epochs': epochs, 'time': 3.0, 'time_steps': 3, 'n_filters': f}
-            hist, final_acc, t_time = train_experiment(cfg, f"P1_{ds_name}_F{f}")
-            phase1_results.append(hist)
-            filters_list.append(f); acc_list.append(final_acc); time_list.append(t_time)
-            
-            final_loss = hist['val_loss'][-1] if hist['val_loss'] else float('inf')
-            if final_acc > best_acc:
-                best_acc = final_acc; best_loss = final_loss; best_filter = f
-            elif final_acc == best_acc:
-                if final_loss < best_loss: best_loss = final_loss; best_filter = f
-        
-        best_configs[ds_name] = best_filter
-        config.LOGGER.info(f"--> Best {ds_name} Filter: {best_filter} (Acc: {best_acc:.4f})")
-
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
-        ax1.plot(filters_list, acc_list, marker='o', color='blue')
-        ax1.set_title(f"Acc vs Filters ({ds_name})"); ax1.set_xlabel("Filters"); ax1.grid(True)
-        ax1.xaxis.set_major_locator(MaxNLocator(integer=True))
-        
-        ax2.bar(filters_list, time_list, color='orange', alpha=0.7)
-        ax2.set_title(f"Time vs Filters ({ds_name})"); ax2.set_xlabel("Filters"); ax2.grid(True, axis='y')
-        ax2.xaxis.set_major_locator(MaxNLocator(integer=True))
-        
-        plt.tight_layout()
-        filename = f"P1_{ds_name}_Tradeoff_{config.MODE}.png"
-        plt.savefig(os.path.join(config.RUN_DIR, filename))
-        plt.close()
-        
-    config.GLOBAL_RESULTS['phase_1'] = phase1_results
-    return best_configs
-
-def run_phase_2(p1_best_configs):
-    config.LOGGER.info("\n" + "="*40)
-    config.LOGGER.info(f"PHASE 2 ({config.MODE}): DYNAMICS GRID SEARCH")
-    config.LOGGER.info("="*40)
-    
-    phase2_results = []
-    best_phase2 = {}
-    
-    if config.MODE == 'DUMMY':
-        times = [1.0]
-        grids = {'MNIST': {'time_steps': [1, 2]}, 'FashionMNIST': {'time_steps': [1, 2]}}
-        data_size, epochs = 1000, 3
-    else:
-        times = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-        grids = {'MNIST': {'time_steps': [1, 2, 4]}, 'FashionMNIST': {'time_steps': [1, 2, 4, 8]}}
-        data_size, epochs = 25000, 5
-    
-    for ds_name, params in grids.items():
-        best_acc = -1; best_cfg = None; records = []
-        optimal_filter = p1_best_configs[ds_name]
-        config.LOGGER.info(f">>> Dataset {ds_name}: Locking n_filters={optimal_filter}")
-        
-        combinations = list(itertools.product(times, params['time_steps'], [optimal_filter]))
-        
-        pbar = tqdm(combinations, desc=f"P2 {ds_name} Grid")
-        
-        for t, s, f in pbar:
-            cfg = {'dataset': ds_name, 'data_size': data_size, 'epochs': epochs, 'time': t, 'time_steps': s, 'n_filters': f}
-            hist, final_acc, _ = train_experiment(cfg, f"P2_{ds_name}_T{t}_S{s}_F{f}")
-            phase2_results.append(hist); records.append({'time': t, 'steps': s, 'filters': f, 'acc': final_acc})
-            if final_acc > best_acc: best_acc = final_acc; best_cfg = cfg
-        
-        if best_cfg is None: best_cfg = cfg
-        best_phase2[ds_name] = best_cfg
-        config.LOGGER.info(f"--> Best {ds_name} P2 Config: {best_cfg}")
-
-        if not records: continue
-        unique_times = sorted(list(set(r['time'] for r in records)))
-        
-        color_map = plt.get_cmap('tab10') 
-        linestyles = ['--', '-.', ':', (0, (3, 1, 1, 1)), (0, (5, 2))]
-        markers = ['o', 's', '^', 'D', 'v', '<', '>', '*', 'P', 'X']
-        style_cycle = itertools.cycle(itertools.product(linestyles, markers))
-        
-        plt.figure(figsize=(10, 7))
-        for t_idx, t in enumerate(unique_times):
-            subset = [r for r in records if r['time'] == t]
-            if not subset: continue
-            subset.sort(key=lambda x: x['steps'])
-            y_vals = [r['acc'] for r in subset]
-            x_vals_str = [str(r['steps']) for r in subset]
-            c = color_map(t_idx % 10)
-            ls, mk = next(style_cycle)
-            plt.plot(x_vals_str, y_vals, marker=mk, linestyle=ls, color=c, 
-                     label=f"Time={t}", linewidth=2, markersize=8, alpha=0.9)
-                      
-        plt.title(f"Dynamics Analysis ({ds_name}) [Filter={optimal_filter}]")
-        plt.xlabel("Time Steps (Equally Spaced Categories)")
-        plt.ylabel("Validation Accuracy")
-        plt.legend(bbox_to_anchor=(1.05, 1), title="Duration (Time)")
-        plt.grid(True, linestyle='--', alpha=0.5); plt.tight_layout()
-        filename = f"P2_{ds_name}_Scatter_{config.MODE}.png"
-        plt.savefig(os.path.join(config.RUN_DIR, filename))
-        plt.close()
-
-    config.GLOBAL_RESULTS['phase_2'] = phase2_results
-    return best_phase2
-
-def run_phase_3(p2_best_configs):
-    config.LOGGER.info("\n" + "="*40)
-    config.LOGGER.info(f"PHASE 3 ({config.MODE}): DEEP ANALYSIS (20 EPOCHS)")
-    config.LOGGER.info("="*40)
-    
-    phase3_results = []
-    
-    if config.MODE == 'DUMMY':
-        data_size = 1000
-        epochs = 5
+        data_size = 100
+        epochs = 3
     else:
         data_size = 'fullset'
         epochs = 20
+    for ds_name, best_cfg in best_configs.items():
         
-    for ds_name, best_cfg in p2_best_configs.items():
+        print (best_configs.items())
         config.LOGGER.info(f">>> Deep Training {ds_name} with Config: {best_cfg}")
         
         run_cfg = best_cfg.copy()
         run_cfg['data_size'] = data_size
         run_cfg['epochs'] = epochs
         
-        save_path = f"model_P3_{ds_name}_{config.MODE}.pth"
+        save_path = f"model_P1_{ds_name}_{config.MODE}.pth"
         
-        hist, final_acc, _ = train_experiment(run_cfg, f"P3_{ds_name}_FINAL", analyze_physics=True, save_model_path=save_path)
-        phase3_results.append(hist)
+        # Enable analyze_physics=True for detailed metrics
+        hist, final_acc, _ = train_experiment(run_cfg, f"P1_{ds_name}_FINAL", 
+                                              analyze_physics=True, save_model_path=save_path)
+        phase1_results.append(hist)
         
         epochs_x = range(1, len(hist['train_loss']) + 1)
         
+        # --- Plot 1: Performance Evolution ---
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
         
+        # Loss
         ax1.plot(epochs_x, hist['train_loss'], label='Train Loss', linestyle='--', color='tab:blue', marker='.')
         ax1.plot(epochs_x, hist['val_loss'], label='Val Loss', linestyle='-', color='tab:orange', marker='.')
         ax1.set_title(f"Loss Evolution ({ds_name})")
@@ -171,6 +73,7 @@ def run_phase_3(p2_best_configs):
         ax1.grid(True)
         ax1.xaxis.set_major_locator(MaxNLocator(integer=True))
         
+        # Accuracy
         ax2.plot(epochs_x, hist['train_acc'], label='Train Acc', linestyle='--', color='tab:green', marker='.')
         ax2.plot(epochs_x, hist['val_acc'], label='Val Acc', linestyle='-', color='tab:red', marker='.')
         ax2.set_title(f"Accuracy Evolution ({ds_name})")
@@ -181,11 +84,11 @@ def run_phase_3(p2_best_configs):
         ax2.xaxis.set_major_locator(MaxNLocator(integer=True))
         
         plt.tight_layout()
-        filename_perf = f"P3_{ds_name}_Perf_{config.MODE}.png"
+        filename_perf = f"P1_{ds_name}_Perf_{config.MODE}.png"
         plt.savefig(os.path.join(config.RUN_DIR, filename_perf))
         plt.close()
         
-        # BCH Error
+        # --- Plot 2: BCH Error ---
         plt.figure()
         plt.plot(epochs_x, hist['bch'], label='BCH Error', color='crimson', marker='o')
         plt.title(f"BCH Error Evolution ({ds_name})")
@@ -193,10 +96,10 @@ def run_phase_3(p2_best_configs):
         plt.ylabel("Error Value")
         plt.grid(True)
         plt.gca().xaxis.set_major_locator(MaxNLocator(integer=True))
-        plt.savefig(os.path.join(config.RUN_DIR, f"P3_{ds_name}_BCH_{config.MODE}.png"))
+        plt.savefig(os.path.join(config.RUN_DIR, f"P1_{ds_name}_BCH_{config.MODE}.png"))
         plt.close()
         
-        # Fisher Rank
+        # --- Plot 3: Fisher Rank ---
         plt.figure()
         plt.plot(epochs_x, hist['fisher_rank'], label='Fisher Rank', color='forestgreen', marker='s')
         plt.title(f"Fisher Rank Evolution ({ds_name})")
@@ -204,74 +107,197 @@ def run_phase_3(p2_best_configs):
         plt.ylabel("Effective Rank")
         plt.grid(True)
         plt.gca().xaxis.set_major_locator(MaxNLocator(integer=True))
-        plt.savefig(os.path.join(config.RUN_DIR, f"P3_{ds_name}_Fisher_{config.MODE}.png"))
+        plt.savefig(os.path.join(config.RUN_DIR, f"P1_{ds_name}_Fisher_{config.MODE}.png"))
         plt.close()
 
-    config.GLOBAL_RESULTS['phase_3'] = phase3_results
+    config.GLOBAL_RESULTS['phase_1'] = phase1_results
 
-def run_phase_4(best_configs):
+def run_phase_2(best_configs):
+    """
+    Executes Phase 2: Data Efficiency Analysis.
+    """
     config.LOGGER.info("\n" + "="*40)
-    config.LOGGER.info(f"PHASE 4 ({config.MODE}): DATA EFFICIENCY")
+    config.LOGGER.info(f"PHASE 2 ({config.MODE}): DATA EFFICIENCY")
     config.LOGGER.info("="*40)
     
-    phase4_results = []
-    sizes = [1000, 2000, 5000] if config.MODE == 'DUMMY' else [1000, 2000, 5000, 10000, 20000, 50000, 'fullset']
+    phase2_results = []
+    sizes = [10, 20, 50] if config.MODE == 'DUMMY' else [10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 'fullset']
     epochs = 5
-    
+    times = 5
+
+    original_seed = getattr(config, 'SEED', 42)
+
     for ds_name, val in best_configs.items():
         if isinstance(val, dict):
             base_cfg = val.copy()
             base_cfg['epochs'] = epochs
-            config.LOGGER.info(f">>> Using Optimized Config from P2 for {ds_name}: {base_cfg}")
+            config.LOGGER.info(f">>> Using Optimized Config for {ds_name}: {base_cfg}")
         else:
             base_cfg = {'dataset': ds_name, 'epochs': epochs, 'time': 1.0, 'time_steps': 1, 'n_filters': val}
-            config.LOGGER.info(f">>> Using Basic Config (Only Filter from P1) for {ds_name}: {base_cfg}")
+            config.LOGGER.info(f">>> Using Basic Config for {ds_name}: {base_cfg}")
 
-
-        size_metrics = {'dataset': ds_name, 'sizes': [], 'accuracies': [], 'losses': []}
+        size_metrics = {
+            'dataset': ds_name, 
+            'sizes': [], 
+            'accuracies_mean': [], 
+            'accuracies_std': [], 
+            'losses_mean': []
+        }
         
-        pbar = tqdm(sizes, desc=f"P4 {ds_name} Data Sizes")
+        pbar = tqdm(sizes, desc=f"P2 {ds_name} Data Sizes")
         for sz in pbar:
             run_cfg = base_cfg.copy()
             run_cfg['data_size'] = sz
             
-            hist, acc, _ = train_experiment(run_cfg, f"P4_{ds_name}_Size_{sz}")
+            sz_accuracies = []
+            sz_losses = []
+            
+            for t in range(times):
+                config.SEED = original_seed + t
+                hist, acc, _ = train_experiment(run_cfg, f"P2_{ds_name}_Size_{sz}_Run_{t+1}")
+                sz_accuracies.append(acc)
+                sz_losses.append(hist['val_loss'][-1])
+            
+            mean_acc = np.mean(sz_accuracies)
+            std_acc = np.std(sz_accuracies)
+            mean_loss = np.mean(sz_losses)
             
             size_metrics['sizes'].append(str(sz))
-            size_metrics['accuracies'].append(acc)
-            size_metrics['losses'].append(hist['val_loss'][-1])
+            size_metrics['accuracies_mean'].append(mean_acc)
+            size_metrics['accuracies_std'].append(std_acc)
+            size_metrics['losses_mean'].append(mean_loss)
             
-        phase4_results.append(size_metrics)
+        phase2_results.append(size_metrics)
+        
+        config.SEED = original_seed
         
         plt.figure(figsize=(8, 5))
-        plt.plot(size_metrics['sizes'], size_metrics['accuracies'], marker='o', color='purple')
+        
+        x_indices = np.arange(len(size_metrics['sizes']))
+        y_mean = np.array(size_metrics['accuracies_mean'])
+        y_std = np.array(size_metrics['accuracies_std'])
+        
+        plt.plot(x_indices, y_mean, marker='o', color='purple', label='Mean Accuracy')
+        plt.fill_between(x_indices, y_mean - y_std, y_mean + y_std, color='purple', alpha=0.2, label='Standard Deviation')
+        
+        plot_labels = ['60000' if str(s) == 'fullset' else str(s) for s in size_metrics['sizes']]
+        plt.xticks(x_indices, plot_labels)
+        
         plt.title(f"Data Necessity ({ds_name})")
         plt.xlabel("Data Size")
         plt.ylabel("Validation Accuracy")
+        plt.legend()
         plt.grid(True)
         
-        filename = f"P4_{ds_name}_Eff_{config.MODE}.png"
+        filename = f"P2_{ds_name}_Eff_{config.MODE}.png"
         plt.savefig(os.path.join(config.RUN_DIR, filename))
         plt.close()
 
-    config.GLOBAL_RESULTS['phase_4'] = phase4_results
+    config.GLOBAL_RESULTS['phase_2'] = phase2_results
 
-def run_phase_5():
+def run_phase_3():
+    """
+    Executes Phase 3: Binary Stability Test.
+
+    - Experimental Goal:
+    Verify the model's stability and consistency on a simplified binary classification task (0 vs 1).
+    Running multiple times helps assess the variance due to initialization.
+
+    - Process:
+        + Filters datasets to only include class 0 and class 1.
+        + Runs the model multiple times (e.g., 10 times) with a standard configuration.
+        + Collects performance metrics to analyze stability.
+    """
     config.LOGGER.info("\n" + "="*40)
-    config.LOGGER.info(f"PHASE 5 ({config.MODE}): BINARY STABILITY")
+    config.LOGGER.info(f"PHASE 3 ({config.MODE}): BINARY STABILITY")
     config.LOGGER.info("="*40)
     
-    phase5_data = {}
+    phase3_data = {}
     for ds_name in ['MNIST', 'FashionMNIST']:
         config.LOGGER.info(f">>> PROCESSING: {ds_name} (Binary)")
         cfg = {'dataset': ds_name, 'data_size': 'fullset', 'epochs': 1, 'batch_size': 25, 
                'n_filters': 1, 'time': 1.0, 'time_steps': 1, 'binary_mode': True}
-        num_runs = 2 if config.MODE == 'DUMMY' else 10
-        runs_data = []
         
-        pbar = tqdm(range(num_runs), desc=f"P5 {ds_name} Runs")
+        num_runs = 5 if config.MODE == 'DUMMY' else 10
+        runs_data = []
+        accuracies = []
+        
+        pbar = tqdm(range(num_runs), desc=f"P3 {ds_name} Runs")
         for i in pbar:
-            hist, acc, _ = train_experiment(cfg, f"P5_{ds_name}_Run_{i+1}", max_steps=200)
-            runs_data.append({'run_id': i+1, 'final_acc': acc, 'final_loss': hist['val_loss'][-1], 'loss_curve': hist['train_loss']})
-        phase5_data[ds_name] = runs_data
-    config.GLOBAL_RESULTS['phase_5'] = phase5_data
+            hist, acc, _ = train_experiment(cfg, f"P3_{ds_name}_Run_{i+1}", max_steps=200) #batch_size 25, iteration 200
+            runs_data.append({
+                'run_id': i+1, 
+                'final_acc': acc, 
+                'final_loss': hist['val_loss'][-1], 
+                'loss_curve': hist['train_loss']
+            })
+            accuracies.append(acc)
+            
+        phase3_data[ds_name] = runs_data
+        
+        # Calculate mean and standard deviation
+        mean_acc = np.mean(accuracies) * 100
+        std_acc = np.std(accuracies) * 100
+        
+        # Print the aggregated result
+        config.LOGGER.info(f"Result for {ds_name} -> Accuracy: {mean_acc:.2f} +- {std_acc:.2f}%")
+    
+    config.GLOBAL_RESULTS['phase_3_binary_stability'] = phase3_data
+
+# def run_phase_4(best_configs):
+#     """
+#     Executes Phase 4: Noise Resilience Analysis.
+    
+#     - Experimental Goal:
+#     Evaluate the model's accuracy degradation under various levels of Depolarizing noise.
+#     Uses 'default.mixed' device in PennyLane for density matrix simulations.
+#     """
+#     config.LOGGER.info("\n" + "="*40)
+#     config.LOGGER.info(f"PHASE 4 ({config.MODE}): NOISE RESILIENCE")
+#     config.LOGGER.info("="*40)
+    
+#     phase4_results = []
+    
+#     noise_levels = [0.0, 0.01, 0.05] if config.MODE == 'DUMMY' else [0.0, 0.01, 0.03, 0.05, 0.1, 0.15, 0.2]
+#     epochs = 2 if config.MODE == 'DUMMY' else 5
+    
+#     for ds_name, val in best_configs.items():
+#         if isinstance(val, dict):
+#             base_cfg = val.copy()
+#             base_cfg['epochs'] = epochs
+#         else:
+#             base_cfg = {'dataset': ds_name, 'epochs': epochs, 'time': 1.0, 'time_steps': 1, 'n_filters': val}
+            
+#         base_cfg['data_size'] = 5 if config.MODE == 'DUMMY' else 'fullset' 
+#         config.LOGGER.info(f">>> Processing Noise Resilience for {ds_name}")
+        
+#         noise_metrics = {
+#             'dataset': ds_name,
+#             'noise_levels': noise_levels,
+#             'accuracies': []
+#         }
+        
+#         pbar = tqdm(noise_levels, desc=f"P4 {ds_name} Noise Levels")
+#         for noise in pbar:
+#             run_cfg = base_cfg.copy()
+#             run_cfg['noise_prob'] = noise
+            
+#             hist, final_acc, _ = train_experiment(run_cfg, f"P4_{ds_name}_Noise_{noise}")
+#             noise_metrics['accuracies'].append(final_acc)
+            
+#         phase4_results.append(noise_metrics)
+        
+#         plt.figure(figsize=(8, 5))
+#         plt.plot(noise_levels, noise_metrics['accuracies'], marker='o', color='darkorange', linewidth=2)
+#         plt.title(f"Noise Resilience - Accuracy Degradation ({ds_name})")
+#         plt.xlabel("Depolarizing Noise Probability ($p$)")
+#         plt.ylabel("Validation Accuracy")
+#         plt.grid(True, linestyle='--', alpha=0.7)
+        
+#         plt.xticks(noise_levels, [f"{int(n*100)}%" for n in noise_levels])
+        
+#         filename = f"P4_{ds_name}_Noise_Resilience_{config.MODE}.png"
+#         plt.savefig(os.path.join(config.RUN_DIR, filename))
+#         plt.close()
+
+#     config.GLOBAL_RESULTS['phase_4_noise'] = phase4_results

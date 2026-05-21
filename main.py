@@ -2,7 +2,7 @@ import argparse
 import config
 from utils import save_to_json, create_run_dir, setup_logger
 from data import aux_download_datasets
-from phases import run_phase_1, run_phase_2, run_phase_3, run_phase_4
+from phases import run_phase_1, run_phase_2, run_phase_3
 
 def main():
     """
@@ -50,19 +50,18 @@ def main():
                          'time_steps': 5, 
                          'n_filters': 6}
     }
-    # run_phase_1(best_configs)
+    run_phase_1(best_configs)
     
-    # # --- Phase 2: Data Efficiency ---
-    # # Input: Best full configs from Phase 2
-    # # Action: Train on [1000, 2000, ..., Full] samples to test sample complexity
-    # run_phase_2(best_configs)
+    # --- Phase 2: Data Efficiency ---
+    # Input: Best full configs from Phase 2
+    # Action: Train on [1000, 2000, ..., Full] samples to test sample complexity
+    run_phase_2(best_configs)
     
-    # # --- Phase 3: Binary Stability ---
-    # # Input: None (Uses independent configuration)
-    # # Action: repeated runs on binary classes (0 vs 1) to test variance
-    # run_phase_3() 
+    # --- Phase 3: Binary Stability ---
+    # Input: None (Uses independent configuration)
+    # Action: repeated runs on binary classes (0 vs 1) to test variance
+    run_phase_3() 
     
-    run_phase_4(best_configs)
 
         
     # Finalize
